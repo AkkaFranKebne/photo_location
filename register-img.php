@@ -2,7 +2,7 @@
 
 
 
-include 'elements_db_connection.php';?> 
+include 'elements_db_connection.php';
     
 /*
 tabela zdjecia stworzona w phpmyadmin/sql
@@ -12,6 +12,8 @@ photo
 title
 alt
 */
+
+
 ?>
 
 
@@ -21,7 +23,13 @@ alt
 <head>
     <meta charset="UTF-8">
     <title>Register new photo</title>
-    <!--<link rel="stylesheet" href="css-minified/index.css">-->
+    <!-- jquery-->
+    <script src="js/jquery-3.2.1.min.js"> </script>
+    <!--google maps api -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk&callback=initMap"> </script>
+    <!-- javascript -->
+    <script src="js/app.js"> </script>
+    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body id ="register_form">
@@ -35,8 +43,7 @@ alt
         Opis: <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name = 'upload' value='upload'>
     </form>
-    <div class = 'greetings'>
-    <div class='message'>
+
         
 
     
@@ -162,12 +169,12 @@ alt
                         //get photo
                             $photo = "images/".$row['photo'];
                         //get description
-                            echo "<h3>".$row['title']."</h3>";
+                            echo "<h3 class='title'>".$row['title']."</h3>";
                             echo "<img src=$photo alt='".$row['alt']."' height='66' width='66'>";
-                            echo "<p>".$row['alt']."</p>";
+                            echo "<p>Description:</p> <p class='desc'>".$row['alt']."</p>";
                         //get coorditates
                             $exif = exif_read_data($photo, 0, true);
-                            echo $exif===false ? "No header data found.<br />\n" : "Image contains headers<br />\n";
+                            echo $exif===false ? "TECH INFO: No header data found.<br />\n" : "TECH INFO: Image contains headers<br />\n";
                             
                             //echo var_dump($exif);
                         /*
@@ -211,9 +218,9 @@ alt
                             //calculate the decimal degree to variables
                             $latitude  = $LatM * ($gps['LatDegree'] + ($gps['LatMinute'] / 60) + ($gps['LatgSeconds'] / 3600));
                             $longitude = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
-                            echo "latitude: $latitude </br>" ;
-                            echo "longitude: $longitude</br>" ;
-                            echo "daytime: $daytime</br>" ;
+                            echo "<p>latitude:</p><p class='lat'> $latitude </p>" ;
+                            echo "<p>longitude:</p><p class='lng'>  $longitude</p>" ;
+                            echo "<p>daytime:</p><p class='time'> $daytime</p>" ;
                                                 
                             }
                         else {echo "nie ma gps";}
@@ -223,7 +230,7 @@ alt
                         }
     
     ?>
-    
+
 </body>
 </html>
     
