@@ -26,7 +26,7 @@ alt
     <!-- jquery-->
     <script src="js/jquery-3.2.1.min.js"> </script>
     <!--google maps api -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk&callback=initMap"> </script>
+    <script  defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxM6O5--X2cBLxhNlqgG6ViC-fR2VspFE"> </script>
     <!-- javascript -->
     <script src="js/app.js"> </script>
     <link rel="stylesheet" href="css/style.css">
@@ -43,6 +43,7 @@ alt
         Opis: <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name = 'upload' value='upload'>
     </form>
+        <div class="title"><h1>Photos:</h1></div>
 
         
 

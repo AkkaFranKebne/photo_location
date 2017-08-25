@@ -53,30 +53,24 @@ $(function() {
                     mapTitle.insertAfter(addressDom);
                     var mapDiv = $('<div>',{class: 'map'}).attr('id', index);
                     mapDiv.insertAfter(mapTitle);
-                    renderMap(lat,lng, index);
-                };
-            });
+                    //renderMap;
+                    console.log(parseFloat(lat.trim()));
+                    console.log(parseFloat(lng.trim()));
+                    var uluru = {lat: parseFloat(lat.trim()), lng: parseFloat(lng.trim())};
+                    var map = new google.maps.Map(document.getElementById(index), {
+                        zoom: 18,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                    });
+            };
             
         
-         // });
+          });
         }
-    
-      function renderMap(lat,lng, index){
-        var uluru = {lat: lat, lng: lng};
-        var map = new google.maps.Map(document.getElementById(index), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    
-
-    
-    
-  
+        
 
     function showLocationForImages(){
          lats.each(function(index, value){
