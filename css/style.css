@@ -1,5 +1,57 @@
+.gallery{
+    height: auto;
+    width: 100vw;
+}
+
+.gallery-image{
+    width: 100%;
+    height: 100%;
+}
+
 .map {
     height: 300px;
     width: 100vw;
     background-color: lightgrey;
 }
+
+
+form, input[type=file], input[type=submit] {
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+    
+form p{
+     font-size: 5vw;
+     padding: 5px;
+    }
+
+
+input[type=text], textarea {
+    width: 87vw;
+    height: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid grey;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+    
+textarea {
+    height: 200px;
+
+}
+
+input[type=file], input[type=submit] {
+    width: 87vw;
+    margin: 0 auto;
+}
+    
+input:focus {
+    background: rgba(255, 255, 255, .35);
+}
+

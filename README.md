@@ -9,19 +9,21 @@ test for getting location from photo and showing it on the google maps
 
 ad 1. 
 issues:
-- safari: no coords for photos taken in Safari directly: Illegal IFD size
+- safari: no coords for photos taken in Safari directly: "Illegal IFD size"
+- to test on win (which browser?) and android chrome
 
 
 ad 2. 
-SQL/JSON?
+SQL vs JSON - to do: try JSON server
 
 
 ad 3.
-Separate map for every photo when you click on it or one for them all and you see photo after click?
+issues:
+- some images rotated;
+
 
 ad 4.
-issues:
-- errof in google api
+Separate map for every photo vs   - to do: one for them all
 
 
 
