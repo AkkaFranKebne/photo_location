@@ -1,3 +1,86 @@
+
+/*reset*/
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    font-family:  'Oswald', sans-serif;
+}
+
+/*fonts*/
+
+h1{
+    font-size: 5vmin;
+    line-height: 10vmin;
+    padding-left: 3vmin;
+}
+
+
+h3{
+    font-size: 4vmin;
+    line-height: 8vmin;
+    padding-left: 3vmin;
+}
+
+p{
+    font-size: 3vmin;
+    line-height: 6vmin;
+    padding-left: 3vmin;   
+}
+/*form*/
+
+form, input[type=file], input[type=submit] {
+    border: 1px solid grey;
+    margin: 3vmin;
+    padding: 3vmin;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+    
+form p{
+     font-size: 3.5vmin;
+     padding-top: 5vmin;
+     padding-bottom: 2vmin;
+    }
+
+
+input[type=text], textarea {
+    font-size: 3vmin;
+    width: 87vw;
+    height: 5.5vmin;
+    padding:1vmin;
+    border: 1px solid grey;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+    
+textarea {
+    height: 30vh;
+    margin-bottom: 2vmin;
+    resize: none;
+
+}
+
+input[type=file], input[type=submit] {
+    background-color: lightgrey;
+    font-size: 3vmin;
+    height: 10vmin;
+    width: 87vw;
+    margin: 0 auto;
+}
+    
+input:focus {
+    background: rgba(255, 255, 255, .35);
+}
+
+/*gallery*/
 .gallery{
     height: auto;
     width: 100vw;
@@ -9,49 +92,9 @@
 }
 
 .map {
-    height: 300px;
+    height: 50vh;
     width: 100vw;
     background-color: lightgrey;
 }
 
-
-form, input[type=file], input[type=submit] {
-    border: 1px solid grey;
-    padding: 5px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-}
-    
-form p{
-     font-size: 5vw;
-     padding: 5px;
-    }
-
-
-input[type=text], textarea {
-    width: 87vw;
-    height: 50px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: 1px solid grey;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-
-}
-    
-textarea {
-    height: 200px;
-
-}
-
-input[type=file], input[type=submit] {
-    width: 87vw;
-    margin: 0 auto;
-}
-    
-input:focus {
-    background: rgba(255, 255, 255, .35);
-}
 
