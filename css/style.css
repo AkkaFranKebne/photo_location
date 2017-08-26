@@ -34,7 +34,7 @@ p{
 }
 /*form*/
 
-form, input[type=file], input[type=submit] {
+form,  input[type=submit] {
     border: 1px solid grey;
     margin: 3vmin;
     padding: 3vmin;
@@ -42,6 +42,14 @@ form, input[type=file], input[type=submit] {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
 }
+input[type=file] {
+    margin: 3vmin;
+    padding: 3vmin;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
     
 form p{
      font-size: 3.5vmin;
@@ -69,7 +77,7 @@ textarea {
 
 }
 
-input[type=button], input[type=submit], input[type=file], button  {
+input[type=button], input[type=submit] {
     background-color: lightgrey;
     font-size: 3vmin;
     height: 10vmin;
@@ -79,13 +87,16 @@ input[type=button], input[type=submit], input[type=file], button  {
 
 input[type="file" i]  {
     font-size: 2vmin;
-    color: white;
+    color: grey;
 }
     
 input:focus {
     background: rgba(255, 255, 255, .35);
 }
 
+.error {
+    color: red;
+}
 
 /*gallery*/
 

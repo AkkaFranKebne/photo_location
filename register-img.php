@@ -29,6 +29,7 @@ alt
     <script  defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxM6O5--X2cBLxhNlqgG6ViC-fR2VspFE"> </script>
     <!-- javascript -->
     <script src="js/app.js"> </script>
+    <!-- css -->
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
 </head>
@@ -44,19 +45,13 @@ alt
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name = 'upload' value='upload'>
     </form>
-        <div class="title"><h1>Mapa zdjęć:</h1></div>
-        <div class="map" id="general-map"></div>
-        <div class="title"><h1>Galeria zdjęć:</h1></div>
-
-        
-
     
 <?php
         $msg = '';
         //$path_to_image_directory = 'images/';
         //$path_to_thumbs_directory = 'images/';
 
-            
+    //creating thumbnail for the map pins        
         
     function createThumbnail($filename) {
         $final_width_of_image = 30;
@@ -83,9 +78,10 @@ alt
                 $tn = '<img src="' . 'images/thumbnail_'. $filename . '" alt="image" />';
             echo $tn;
                 }
-        else { echo "Obrazek musi byc w formacie jpg";}
-    }
-
+        else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg.Sprobuj ponownie.</p>";}
+    }    
+       
+    //adding photo to sql
                 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           if (preg_match('/[.](jpg)$/', $_FILES['image']['name']) || preg_match('/[.](JPG)$/', $_FILES['image']['name'])) {
@@ -103,17 +99,17 @@ alt
             //send data to sql
             $sql = "INSERT INTO lemoniada_test.zdjecia (photo, title, alt) VALUES ('$image', '$title', '$alt')";          
             if ($conn->query($sql) === TRUE) {
-                    echo "Nowy wpis dodany<br>";
+                    echo "<p>Nowy wpis dodany</p>";
             } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "<p>Error: " . $sql . "<br>" . $conn->error."</p>";
             }
           
           //move uploaded image into the folder
           if (move_uploaded_file($source, $target)) {
-              $msg = "<br>obrazek uploadowany<br>";
+              $msg = "<p>obrazek uploadowany</p>";
           }
           else {
-              $msg = "problem z uploadowaniem obrazka";
+              $msg = "<p class='error'>problem z uploadowaniem obrazka</p>";
           }
           echo '<br>';
           echo $msg;
@@ -122,13 +118,21 @@ alt
           //create thumbnail  for map
           createThumbnail($filename); 
           }
-          else {echo "Obrazek musi byc w formacie jpg";}
+          else {echo "<p class='error'>Obrazek nie zostal zalaczony. Obrazek musi byc w formacie jpg. Sprobuj ponownie.</p>";}
     };
    
 ?>
     
+     <div class="title"><h1>Mapa zdjęć:</h1></div>
+        <div class="map" id="general-map"></div>
+        <div class="title"><h1>Galeria zdjęć:</h1></div>
+
+        
+
     
-    <?php
+<?php
+    
+ 
     //show the uploaded files
     $sql = "SELECT title, photo, alt FROM lemoniada_test.zdjecia" ;
             $result = $conn->query($sql);
@@ -138,11 +142,11 @@ alt
                             $photo = "images/".$row['photo'];
                         //get  and show title
                             echo "<div class='gallery-box'>";
-                            echo "<h3 class='title'>".$row['title']."</h3> <br>";
+                            echo "<h3 class='title'>".$row['title']."</h3> ";
                               
                         //get to data meta data
                             $exif = exif_read_data($photo, 0, true);
-                            echo $exif===false ? "TECH INFO: No header data found.<br />\n" : "TECH INFO: Image contains headers<br />\n";
+                            echo $exif===false ? "<br>TECH INFO: No header data found.<br />\n" : "<br>TECH INFO: Image contains headers<br />";
                             
                             //echo var_dump($exif);
                         /*
@@ -194,13 +198,14 @@ alt
                             echo "<div class='address-box'>";
                             echo "<p class='coord'>lat:</p><p class='coord lat'> $latitude </p>" ;
                             echo "<p class='coord'>lng:</p><p class='coord lng'>  $longitude</p>" ;
-                            echo "</div> </div>";
+
                                                 
                             }
-                        else {echo "nie ma gps";}
+                        else {echo "<p class='coord'>Brak koordytat GPS dla tego zdjecia :( Nie mozna pokazac go na mapie.</p>";}
+                        echo "</div> </div>";
                         }
                 }else {
-                            echo "brak danych!";
+                            echo "<p>Nie ma jeszcze żadnych zdjęc, sprobuj dodac pierwsze!</p>";
                         }
     
     ?>

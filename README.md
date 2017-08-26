@@ -23,7 +23,7 @@ issues:
 
 
 ad 4.
-Separate map for every photo vs   - to do: one for them all
+done
 
 
 
