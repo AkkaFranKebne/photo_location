@@ -3,9 +3,11 @@ $(function() {
     // variables for DOM
     var lats = $('.lat');
     var lngs = $('.lng');
-    var locations = [];
+    var images  = $('.gallery-image');
+    
     
     //array from coords
+    var locations = [];
     for (var i = 0; i < lats.length; i ++){
         var loc = [];
         var lat = parseFloat(lats[i].innerHTML.trim());
@@ -18,6 +20,32 @@ $(function() {
         locations.push(loc);
         
     }
+    
+    //images objects
+    var imgObjectsArray = [];
+    
+    function Image(imgSrc, thumbnailSrc, lat, lng){
+        this.imgSrc = imgSrc;
+        this.thumbnailSrc = thumbnailSrc;
+        this.lat = lat;
+        this.lng = lng;
+    }
+    
+    
+    for (var i = 0; i < images.length; i ++){
+        var src = images[i].getAttribute('src');
+        var srcThumb = src.replace("/", "/thumbnail_");
+        var lat = images.eq(i).parent().parent().find('.lat');
+        lat = parseFloat(lat.text());
+        var lng = images.eq(i).parent().parent().find('.lng');
+        lng = parseFloat(lng.text());
+        var obj = new Image(src, srcThumb, lat, lng);
+        imgObjectsArray.push(obj);
+    }
+    
+   //console.log(imgObjectsArray);
+    
+     
     
     //general map rendering 
     var uluru = {lat: locations[0][0], lng: locations[0][1]};  //first photo, needs to be more flexible
