@@ -3,8 +3,41 @@ $(function() {
     // variables for DOM
     var lats = $('.lat');
     var lngs = $('.lng');
- 
+    var locations = [];
+    
+    //array from coords
+    for (var i = 0; i < lats.length; i ++){
+        var loc = [];
+        var lat = parseFloat(lats[i].innerHTML.trim());
+        var lng = parseFloat(lngs[i].innerHTML.trim());
+        //console.log(lat);
+        //console.log(lng);
+        loc.push(lat);
+        loc.push(lng);
+        //console.log(loc);
+        locations.push(loc);
+        
+    }
+    
+    //general map rendering 
+    var uluru = {lat: locations[0][0], lng: locations[0][1]};  //first photo, needs to be more flexible
+    var generalMap = new google.maps.Map(document.getElementById('general-map'), {
+        zoom: 13, //need to be more flexible
+        center: uluru, 
 
+    });
+
+    for (var i = 0; i < locations.length; i++) { 
+        var uluru = {lat: locations[i][0], lng: locations[i][1]};
+        //console.log(uluru);
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: generalMap
+      });
+        
+    }
+        
+    
     //url  
     //var coordUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=51.114238888889,17.048241666667&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
     
@@ -50,8 +83,8 @@ $(function() {
                     var mapDiv = $('<div>',{class: 'map'}).attr('id', index);
                     mapDiv.insertAfter(addressDom);
                     //renderMap;
-                    console.log(parseFloat(lat.trim()));
-                    console.log(parseFloat(lng.trim()));
+                    //console.log(parseFloat(lat.trim()));
+                    //console.log(parseFloat(lng.trim()));
                     var uluru = {lat: parseFloat(lat.trim()), lng: parseFloat(lng.trim())};
                     var map = new google.maps.Map(document.getElementById(index), {
                         zoom: 18,
@@ -84,6 +117,9 @@ $(function() {
 
     
     showLocationForImages();
+    
+    
+     
     
     
     //end---------------------

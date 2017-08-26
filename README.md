@@ -8,7 +8,6 @@ test for getting location from photo and showing it on the google maps
 4. photo shown on the map;
 
 ad 1. 
-to do: rwd css
 issues:
 - safari: no coords for photos taken in Safari directly: "Illegal IFD size"
 - to test on win (which browser?) and android chrome

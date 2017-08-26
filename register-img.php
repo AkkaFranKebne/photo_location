@@ -30,7 +30,7 @@ alt
     <!-- javascript -->
     <script src="js/app.js"> </script>
     <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
 </head>
 <body id ="register_form">
     <header>
@@ -44,6 +44,8 @@ alt
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name = 'upload' value='upload'>
     </form>
+        <div class="title"><h1>Mapa zdjęć:</h1></div>
+        <div class="map" id="general-map"></div>
         <div class="title"><h1>Galeria zdjęć:</h1></div>
 
         
