@@ -47,9 +47,7 @@ alt
     </form>
     
 <?php
-        $msg = '';
-        //$path_to_image_directory = 'images/';
-        //$path_to_thumbs_directory = 'images/';
+
 
     //creating thumbnail for the map pins        
         
@@ -57,7 +55,7 @@ alt
         $final_width_of_image = 30;
         
             //check if img is jpg
-            if(preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename)) {
+            if( preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename) || preg_match('/[.](png)$/', $filename) || preg_match('/[.](PNG)$/', $filename)) {
                 //create image from file
                 $im = imagecreatefromjpeg('images/'. $filename);
                 //save to variables orginal height and width of the image
@@ -73,18 +71,24 @@ alt
                 //bool imagecopyresized ( resource $dst_image , resource $src_image , int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w , int $dst_h , int $src_w , int $src_h )
                 imagecopyresized($nm, $im, 0,0,0,0,$nx,$ny,$ox,$oy);
                 //creates a JPEG file from the given image.; Output image to browser or file
-                imagejpeg($nm, 'images/thumbnail_'. $filename);
-                //creates DOM element
-                $tn = '<img src="' . 'images/thumbnail_'. $filename . '" alt="image" />';
-            echo $tn;
+                if (preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename)) {
+                    imagejpeg($nm, 'images/thumbnail_'. $filename);
                 }
-        else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg.Sprobuj ponownie.</p>";}
+                //creates a JPEG file from the given image.; Output image to browser or file
+                if (preg_match('/[.](png)$/', $filename) || preg_match('/[.](PNG)$/', $filename)) {
+                    imagepng($nm, 'images/thumbnail_'. $filename);
+                }
+                //creates DOM element
+                //$tn = '<img src="' . 'images/thumbnail_'. $filename . '" alt="image" />';
+            //echo $tn;
+                }
+        else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg lub jpg.Sprobuj ponownie.</p>";}
     }    
        
     //adding photo to sql
                 
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          if (preg_match('/[.](jpg)$/', $_FILES['image']['name']) || preg_match('/[.](JPG)$/', $_FILES['image']['name'])) {
+          if (  preg_match('/[.](jpg)$/', $_FILES['image']['name']) || preg_match('/[.](JPG)$/', $_FILES['image']['name']) || preg_match('/[.](png)$/', $_FILES['image']['name']) || preg_match('/[.](PNG)$/', $_FILES['image']['name']) ) {
           
             //submitted data
             $fileData = pathinfo(basename($_FILES["image"]["name"]));
@@ -118,7 +122,7 @@ alt
           //create thumbnail  for map
           createThumbnail($filename); 
           }
-          else {echo "<p class='error'>Obrazek nie zostal zalaczony. Obrazek musi byc w formacie jpg. Sprobuj ponownie.</p>";}
+          else {echo "<p class='error'>Obrazek nie zostal zalaczony. Obrazek musi byc w formacie jpg lub png. Sprobuj ponownie.</p>";}
     };
    
 ?>

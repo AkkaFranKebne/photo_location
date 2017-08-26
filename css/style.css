@@ -14,7 +14,7 @@
 /*fonts*/
 
 h1{
-    font-size: 5vmin;
+    font-size: 7vmin;
     line-height: 10vmin;
     padding-left: 3vmin;
     text-align: center;
@@ -22,13 +22,13 @@ h1{
 
 
 h3{
-    font-size: 4vmin;
+    font-size: 6vmin;
     line-height: 8vmin;
     padding-left: 3vmin;
 }
 
 p{
-    font-size: 3vmin;
+    font-size: 5vmin;
     line-height: 6vmin;
     padding-left: 3vmin;   
 }
@@ -52,16 +52,16 @@ input[type=file] {
 
     
 form p{
-     font-size: 3.5vmin;
+     font-size: 5.5vmin;
      padding-top: 5vmin;
      padding-bottom: 2vmin;
     }
 
 
 input[type=text], textarea {
-    font-size: 3vmin;
+    font-size: 5vmin;
     width: 87vw;
-    height: 5.5vmin;
+    height: 10vmin;
     padding:1vmin;
     border: 1px solid grey;
     -moz-border-radius: 5px;
@@ -79,14 +79,14 @@ textarea {
 
 input[type=button], input[type=submit] {
     background-color: lightgrey;
-    font-size: 3vmin;
-    height: 10vmin;
+    font-size: 5vmin;
+    height: 20vmin;
     width: 87vw;
     margin: 0 auto;
 }
 
 input[type="file" i]  {
-    font-size: 2vmin;
+    font-size: 4vmin;
     color: grey;
 }
     
@@ -112,7 +112,7 @@ input:focus {
 }
 
 .time {
-    font-size: 1.8vmin;
+    font-size: 3.8vmin;
     color: grey;
 }
 
@@ -148,6 +148,10 @@ input:focus {
     display:inline;
         font-size: 1.8vmin;
     color: grey;
+}
+
+.address {
+    font-size: 3vmin;
 }
 
 .map {
