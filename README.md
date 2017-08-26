@@ -9,17 +9,20 @@ test for getting location from photo and showing it on the google maps
 
 ad 1. 
 issues:
-- safari: no coords for photos taken in Safari directly: "Illegal IFD size"
-- to test on win (which browser?) and android chrome
+- safari: no coords for photos taken in Safari directly: "Illegal IFD size" known issue  https://bugs.php.net/bug.php?id=50660
+ 
+ to do:
+ to test on win  edge and android chrome
 
 
 ad 2. 
-SQL vs JSON - to do: try JSON server
+- add php image saving to json
+
 
 
 ad 3.
 issues:
-- some images rotated;
+- images rotated on computer (but not in mobile) - $exif["IFD0"]["Orientation"]
 
 
 ad 4.

@@ -70,6 +70,7 @@ alt
                 //copy the downloaded image to the new created image, with the resize, you can add a possition here. The coordinates refer to the upper left corner.  http://php.net/manual/en/function.imagecopyresized.php
                 //bool imagecopyresized ( resource $dst_image , resource $src_image , int $dst_x , int $dst_y , int $src_x , int $src_y , int $dst_w , int $dst_h , int $src_w , int $src_h )
                 imagecopyresized($nm, $im, 0,0,0,0,$nx,$ny,$ox,$oy);
+                //change orientation
                 //creates a JPEG file from the given image.; Output image to browser or file
                 if (preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename)) {
                     imagejpeg($nm, 'images/thumbnail_'. $filename);
@@ -83,7 +84,8 @@ alt
             //echo $tn;
                 }
         else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg lub jpg.Sprobuj ponownie.</p>";}
-    }    
+    } 
+    
        
     //adding photo to sql
                 
@@ -99,7 +101,7 @@ alt
             //source and target to save at the server
             $source = $_FILES['image']['tmp_name'];
             $target = "images/".$image; 
-
+              
             //send data to sql
             $sql = "INSERT INTO lemoniada_test.zdjecia (photo, title, alt) VALUES ('$image', '$title', '$alt')";          
             if ($conn->query($sql) === TRUE) {
@@ -117,8 +119,10 @@ alt
           }
           echo '<br>';
           echo $msg;
+              
           
-          
+              
+              
           //create thumbnail  for map
           createThumbnail($filename); 
           }
@@ -161,6 +165,33 @@ alt
                                         }
                                    // }
                                 }*/
+                        
+                            //check if image needs rotation    
+                            $ort = $exif["IFD0"]["Orientation"];
+                            echo "<p class='address'>Orientation: $ort</p>";
+                            /* 
+                            if ($ort >1){
+                            
+                            $imageResource = imagecreatefromjpeg($photo);  
+                                
+                             switch($ort) {
+                                    case 3:
+                                        $image = imagerotate($imageResource, 180, 0);
+                                        break;
+                                    case 6:
+                                        $image = imagerotate($imageResource, -90, 0);
+                                        break;
+                                    case 8:
+                                        $image = imagerotate($imageResource, 90, 0);
+                                        break;
+                                     default:
+                                        $image = $imageResource;
+                                }
+                                
+                             $photo = imagejpeg($image, $filename, 90);
+                            }
+
+                            */
                         
                         //saving  and showing date
                             $daytime = $exif["IFD0"]["DateTime"];

@@ -1,0 +1,28 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "title": "Dinner",
+      "alt": "This is my dinner",
+      "photo": "images/59a171b3231fb.JPG"
+    },
+    {
+      "id": 2,
+      "title": "Summer",
+      "alt": "look at my yummy supper",
+      "photo": "images/59a171b3231fb.JPG"
+    },
+    {
+      "title": "Manamana",
+      "alt": "tututu",
+      "photo": "images/59a171b3231fb.JPG",
+      "id": "3"
+    },
+    {
+      "title": "Wieczor",
+      "alt": "Robi sie chlodno",
+      "photo": "images/59a171b3231fb.JPG",
+      "id": "4"
+    }
+  ]
+}
