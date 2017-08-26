@@ -7,6 +7,7 @@ $(function() {
     
     
     //array from coords
+    /*
     var locations = [];
     for (var i = 0; i < lats.length; i ++){
         var loc = [];
@@ -21,7 +22,10 @@ $(function() {
         
     }
     
-    //images objects
+    
+    */
+    
+    //image object
     var imgObjectsArray = [];
     
     function Image(imgSrc, thumbnailSrc, lat, lng){
@@ -44,28 +48,41 @@ $(function() {
     }
     
    //console.log(imgObjectsArray);
-    
      
     
     //general map rendering 
-    var uluru = {lat: locations[0][0], lng: locations[0][1]};  //first photo, needs to be more flexible
+    var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  //first photo, needs to be more flexible
     var generalMap = new google.maps.Map(document.getElementById('general-map'), {
         zoom: 13, //need to be more flexible
         center: uluru, 
 
     });
+    
+    //markers on general map
+        /*
+            for (var i = 0; i < locations.length; i++) { 
+                var uluru = {lat: locations[i][0], lng: locations[i][1]};
+                //console.log(uluru);
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: generalMap
+              });
 
-    for (var i = 0; i < locations.length; i++) { 
-        var uluru = {lat: locations[i][0], lng: locations[i][1]};
+            }*/
+    
+        for (var i = 0; i < imgObjectsArray.length; i++) { 
+        var uluru = {lat: imgObjectsArray[i].lat, lng: imgObjectsArray[i].lng};
         //console.log(uluru);
         var marker = new google.maps.Marker({
             position: uluru,
-            map: generalMap
+            map: generalMap,
+            icon: imgObjectsArray[i].thumbnailSrc
       });
         
     }
         
     
+    //getting the addres from geocode api
     //url  
     //var coordUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=51.114238888889,17.048241666667&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
     
@@ -91,8 +108,7 @@ $(function() {
     }  
     //loadData(51.114238888889,17.048241666667);
     
-    
-    //get address
+    //show map and adress
     function renderData(result,lat,lng){ 
         var index = 0;
         //get address data from api
@@ -128,7 +144,7 @@ $(function() {
           });
         }
         
-
+    //find map and address for each image
     function showLocationForImages(){
          lats.each(function(index, value){
             var lat = $(this).text();
