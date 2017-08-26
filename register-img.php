@@ -22,7 +22,7 @@ alt
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register new photo</title>
+    <title>Photos location</title>
     <!-- jquery-->
     <script src="js/jquery-3.2.1.min.js"> </script>
     <!--google maps api -->
@@ -34,17 +34,17 @@ alt
 </head>
 <body id ="register_form">
     <header>
-        <div class="title"><h1>Register new photo:</h1></div>
+        <div class="title"><h1>Zarejestruj nowe zdjęcie:</h1></div>
     </header>
     <form action='#' method = post enctype="multipart/form-data">
         <p>Wybierz zdjęcie</p>
         <input type=hidden name=size value='1000000'>
-        <input type=file name=image >
+        <input type=file  name=image  >
         <p>Nadaj tytuł: </p><input type=text name=title >
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name = 'upload' value='upload'>
     </form>
-        <div class="title"><h1>Photos:</h1></div>
+        <div class="title"><h1>Galeria zdjęć:</h1></div>
 
         
 
@@ -134,11 +134,11 @@ alt
                     while($row = $result->fetch_assoc()) {
                         //get photo
                             $photo = "images/".$row['photo'];
-                        //get description
-                            echo "<h3 class='title'>".$row['title']."</h3>";
-                            echo "<picture class='gallery'><img class ='gallery-image' src=$photo alt='".$row['alt']."'></picture>";
-                            echo "<p>Description:</p> <p class='desc'>".$row['alt']."</p>";
-                        //get coorditates
+                        //get  and show title
+                            echo "<div class='gallery-box'>";
+                            echo "<h3 class='title'>".$row['title']."</h3> <br>";
+                              
+                        //get to data meta data
                             $exif = exif_read_data($photo, 0, true);
                             echo $exif===false ? "TECH INFO: No header data found.<br />\n" : "TECH INFO: Image contains headers<br />\n";
                             
@@ -152,8 +152,13 @@ alt
                                    // }
                                 }*/
                         
-                        //saving date
+                        //saving  and showing date
                             $daytime = $exif["IFD0"]["DateTime"];
+                            echo "<p class='time'> $daytime</p>" ;
+                        //get  and show description
+                            echo "<p class='desc'>".$row['alt']."</p>";
+                        //showing image 
+                        echo "<picture class='gallery'><img class ='gallery-image' src=$photo alt='".$row['alt']."'></picture>";
                         
                         //getting longitude and latitude
                             if(isset($exif["GPS"]["GPSLatitudeRef"])){
@@ -184,9 +189,10 @@ alt
                             //calculate the decimal degree to variables
                             $latitude  = $LatM * ($gps['LatDegree'] + ($gps['LatMinute'] / 60) + ($gps['LatgSeconds'] / 3600));
                             $longitude = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
-                            echo "<p>latitude:</p><p class='lat'> $latitude </p>" ;
-                            echo "<p>longitude:</p><p class='lng'>  $longitude</p>" ;
-                            echo "<p>daytime:</p><p class='time'> $daytime</p>" ;
+                            echo "<div class='address-box'>";
+                            echo "<p class='coord'>lat:</p><p class='coord lat'> $latitude </p>" ;
+                            echo "<p class='coord'>lng:</p><p class='coord lng'>  $longitude</p>" ;
+                            echo "</div> </div>";
                                                 
                             }
                         else {echo "nie ma gps";}

@@ -42,17 +42,13 @@ $(function() {
             var address = result.formatted_address;
         //put it to dom element
             var addressDom = $('<p>',{class: 'address'}).text(address);
-            var adresTitle = $('<p>').text("Address: ");
         //attach it to the specific place in dom
             lngs.each(function(index,value){
                 if ($(this).text() == lng){
-                    adresTitle.insertAfter($(this));
-                    addressDom.insertAfter(adresTitle);
+                    addressDom.insertAfter($(this));
                     //map dom element
-                    var mapTitle = $('<p>').text("Map: ");
-                    mapTitle.insertAfter(addressDom);
                     var mapDiv = $('<div>',{class: 'map'}).attr('id', index);
-                    mapDiv.insertAfter(mapTitle);
+                    mapDiv.insertAfter(addressDom);
                     //renderMap;
                     console.log(parseFloat(lat.trim()));
                     console.log(parseFloat(lng.trim()));
