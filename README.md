@@ -14,8 +14,9 @@ Then:
  Information about coords and date of photoshoot taken from exif  data.
  
 #### issues:
-- not all mobile phones provides exif GPS data;
-- noticed at ios, safari: no coords for photos taken in Safari directly: error  "Illegal IFD size" known issue, see:  https://bugs.php.net/bug.php?id=50660
+- not all mobile phones provides exif GPS data;;
+- noticed at ios, safari: no coords for photos taken in Safari directly: error  "Illegal IFD size" known issue, see:  https://bugs.php.net/bug.php?id=50660;
+- is it acceptable or the other solution should be introduced (eg GEO Location API https://developers.google.com/web/fundamentals/native-hardware/user-location/, however it would be location in the moment of adding the photo, not in the moment of taking the photo... ) 
  
 
 ### ad 3.
@@ -37,13 +38,10 @@ Done via Google Maps JS. Every photo that has coordinates has it's own map, one 
 - Karbonn android one - not provides coords, images rotated properly, application works properly)
 
 #### Virtually:
-https://www.browserstack.com/start#os=android&os_version=4.4&device=Samsung+Galaxy+Tab+4&device_browser=chrome&zoom_to_fit=true&full_screen=true&url=www.browserstack.com%2Fwelcome&speed=1&host_ports=google.com%2C80%2C0
-
-https://www.browserstack.com/start#os=android&os_version=4.4&device=Samsung+Galaxy+Note+4&device_browser=chrome&zoom_to_fit=true&full_screen=true&url=http%3A%2F%2Flocalhost%2Fphoto_location%2Fregister-img.php%23&speed=1&host_ports=google.com%2C80%2C0
-
-https://www.browserstack.com/start#os=android&os_version=5.0&device=Motorola+Moto+G+2nd+Gen&device_browser=chrome&zoom_to_fit=true&full_screen=true&url=http%3A%2F%2Flocalhost%2Fphoto_location%2Fregister-img.php%23&speed=1&host_ports=google.com%2C80%2C0
-
-https://www.browserstack.com/start#os=iOS&os_version=9.0&device=iPhone+6S&device_browser=safari&zoom_to_fit=true&full_screen=true&url=http%3A%2F%2Flocalhost%2Fphoto_location%2Fregister-img.php%23&speed=1&host_ports=google.com%2C80%2C0
-
-https://www.browserstack.com/start#os=winphone&device=Nokia+Lumia+930&zoom_to_fit=true&full_screen=true&url=http%3A%2F%2Flocalhost%2Fphoto_location%2Fregister-img.php%23&speed=1&host_ports=google.com%2C80%2C0
+via https://www.browserstack.com/
+os=android&os_version=4.4&device=Samsung+Galaxy+Tab+4&device_browser=chrome
+os=android&os_version=4.4&device=Samsung+Galaxy+Note+4&device_browser=chrome
+os=android&os_version=5.0&device=Motorola+Moto+G+2nd+Gen&device_browser=chrome
+os=iOS&os_version=9.0&device=iPhone+6S&device_browser=safari
+os=winphone&device=Nokia+Lumia+930&device_browser=edge
 
