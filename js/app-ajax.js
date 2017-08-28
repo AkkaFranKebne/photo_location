@@ -66,7 +66,7 @@ $(function() {
         }).done(function(response){
                   //console.log(response);
      		    insertContent(response);
-                console.log(imgObjectsArray);
+                //console.log(imgObjectsArray);
                 showGeneralMap();
     	 }).fail(function(error) {
            console.log(error);
@@ -99,14 +99,14 @@ $(function() {
                 cache: false,             // To unable request pages to be cached
                 processData:false,        // To send DOMDocument or non processed data file it is set to false
                 success: function(response) {  
-                        console.log(response);
+                        //console.log(response);
                         photoUrl = response.split("||")[0];
                         photoUrl = photoUrl.trim();
                         lat = response.split("||")[2];
                         lng = response.split("||")[3];
                         date = response.split("||")[1];
                         if  (date.indexOf("Warning") >= 0) { 
-                            console.log(date); 
+                            //console.log(date); 
                             date = "NULL";
                         }; //temporary fix for "Illegal IFD size" bug
                      
@@ -197,27 +197,57 @@ $(function() {
 
     //general map rendering 
     function showGeneralMap(){
-            var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  //first photo, needs to be more flexible
+        //collect all markers that are not null
+        
+        /*
+             var markers = []
+             
+             
+            for (var i = 0; i < imgObjectsArray.length; i++) {
+              if (imgObjectsArray[i].lat != "NULL"){
+                 var lat = imgObjectsArray[i].lat;
+                var lng = imgObjectsArray[i].lng;
+                var coords = [];
+                coords.push(lat);
+                coords.push(lng);
+                markers.push(coords);                 
+              }
+
+            }
+            //console.log(markers);
+            
+            */
+        
+            //map
+            var uluru = {lat: parseFloat(imgObjectsArray[0].lat), lng: parseFloat(imgObjectsArray[0].lng)};  //first photo, needs to be more flexible
             var generalMap = new google.maps.Map(document.getElementById('general-map'), {
                 zoom: 13, //need to be more flexible
                 center: uluru, 
 
             });
-
+            //pins
+                // setting the  custom area for map
+                var bounds = new google.maps.LatLngBounds();
+        
+                //for pins generating
                 for (var i = 0; i < imgObjectsArray.length; i++) { 
-                var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
-                console.log(uluru);
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: generalMap,
-                    icon: imgObjectsArray[i].thumbnailSrc
-              });
-
-            }       
-    }
-
-
-    
+                    if (imgObjectsArray[i].lat !=="NULL"){
+                             var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
+                            //console.log(uluru);
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: generalMap,
+                                icon: imgObjectsArray[i].thumbnailSrc
+                          });
+                            // setting the  custom area for map
+                           bounds.extend(marker.getPosition());                       
+                    }
+            }
+            // setting the  custom area for map
+            generalMap.fitBounds(bounds);
+                
+    };
+     
     //end---------------------------------
 
 });
