@@ -36,5 +36,45 @@
         else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg lub jpg.Sprobuj ponownie.</p>";}
     }
 
+
+       function getCoords($photo){
+           //get to data meta data
+                        $exif = exif_read_data($photo, 0, true);
+                        //coords
+                            if(isset($exif["GPS"]["GPSLatitudeRef"])){
+                                $LatM = 1; $LongM = 1;
+                                if($exif["GPS"]["GPSLatitudeRef"] == 'S'){
+                                    $LatM = -1;
+                                }
+                                if($exif["GPS"]["GPSLongitudeRef"] == 'W'){
+                                    $LongM = -1;
+                                }
+                                //get the GPS data to arrays
+                                $gps['LatDegree']=$exif["GPS"]["GPSLatitude"][0];
+                                $gps['LatMinute']=$exif["GPS"]["GPSLatitude"][1];
+                                $gps['LatgSeconds']=$exif["GPS"]["GPSLatitude"][2];
+                                $gps['LongDegree']=$exif["GPS"]["GPSLongitude"][0];
+                                $gps['LongMinute']=$exif["GPS"]["GPSLongitude"][1];
+                                $gps['LongSeconds']=$exif["GPS"]["GPSLongitude"][2];
+
+                                //convert strings to numbers
+                                foreach($gps as $key => $value){
+                                    $pos = strpos($value, '/');
+                                    if($pos !== false){
+                                        $temp = explode('/',$value);
+                                        $gps[$key] = $temp[0] / $temp[1];
+                                    }
+                                }
+                            $latitude  = $LatM * ($gps['LatDegree'] + ($gps['LatMinute'] / 60) + ($gps['LatgSeconds'] / 3600));
+                            $longitude = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
+                            //date
+                            $daytime = $exif["IFD0"]["DateTime"];  //variable we need
+                            echo   "||".$daytime."||".$latitude."||".$longitude;                
+                            }
+                        else {echo "<p class='coord'>Brak koordytat GPS dla tego zdjecia :( Nie mozna pokazac go na mapie.</p>";}
+       }
+
+                              
+
 ?>
     

@@ -16,12 +16,12 @@ include 'functions.php';
                         
           //move uploaded image into the folder
           if (move_uploaded_file($source, $target)) {
-              $msg = "$target";  //this is the return we want to achieve
+              echo "$target";  //this is the return we want to achieve
+              echo getCoords($target);
           }
           else {
-              $msg = "<p class='error'>problem z uploadowaniem obrazka</p>";
+              echo "<p class='error'>problem z uploadowaniem obrazka</p>";
           }
-          echo $msg;
                
               
           //create thumbnail  for map

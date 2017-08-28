@@ -63,6 +63,10 @@ $(function() {
             
             // save image via PHP
             var photoUrl = '#';
+            var lat = '';
+            var lng = '';
+            var date = '';
+            
              $.ajax({
                 url: "upload-for-ajax.php", 
                 type: "POST",             
@@ -73,8 +77,10 @@ $(function() {
                 processData:false,        // To send DOMDocument or non processed data file it is set to false
                 success: function(response) {  
                         //console.log(response);
-                        photoUrl = response;
-                        console.log(photoUrl);
+                        photoUrl = response.split("||")[0];
+                        lat = response.split("||")[2];
+                        lng = response.split("||")[3];
+                        date = response.split("||")[1];
                      
                         //retrieve post data
                         var title = $('input[name="title"]').val();
@@ -86,7 +92,10 @@ $(function() {
                         var jsonData = {
                             title: title,
                             alt: desc,
-                            photo: photoUrl
+                            photo: photoUrl,
+                            lat: lat,
+                            lng: lng,
+                            date: date
                         };
                         //console.log(jsonData);
                 

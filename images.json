@@ -4,31 +4,19 @@
       "id": 1,
       "title": "Dinner",
       "alt": "This is my dinner",
-      "photo": "images/59a171b3231fb.JPG"
+      "photo": "images/59a171b3231fb.JPG",
+      "lat": 51.03,
+      "lng": 17.02,
+      "date": "2017:08:23 17:57:47"
     },
     {
-      "title": "Kot 2",
-      "alt": "take a nap",
-      "photo": "    images/59a3b86f73913.JPG",
+      "title": "Sasss",
+      "alt": "ssss",
+      "photo": "    images/59a3c39358610.JPG",
+      "lat": "51.114441666667",
+      "lng": "17.048447222222",
+      "date": "2017:08:23 18:48:46",
       "id": 2
-    },
-    {
-      "title": "zombie",
-      "alt": "asas",
-      "photo": "    images/59a3b93d55456.jpg",
-      "id": 3
-    },
-    {
-      "title": "Drawing",
-      "alt": "ddddd",
-      "photo": "    images/59a3b96dee085.jpg",
-      "id": 4
-    },
-    {
-      "title": "Orki",
-      "alt": "z Majorki",
-      "photo": "    images/59a3ba548cd64.jpg",
-      "id": 5
     }
   ]
 }
