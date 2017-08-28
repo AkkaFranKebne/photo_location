@@ -4,11 +4,18 @@ $(function() {
   //reading data from json---------------------------------------
   //variables for main ul list
   var imagesDiv = $('#images-div');
-  var button = $('input[type="submit"]');
   var form = $('form');
-  console.log(form);
     
-
+   //image object
+    var imgObjectsArray = [];
+    
+    function Image(imgSrc, thumbnailSrc, lat, lng){
+        this.imgSrc = imgSrc;
+        this.thumbnailSrc = thumbnailSrc;
+        this.lat = lat;
+        this.lng = lng;
+    }
+        
 
   //variables for url
   var apiUrl = 'http://localhost:3000/images/';
@@ -40,7 +47,13 @@ $(function() {
         var p6 = $('<p>', {class: "coord"}).text(element.lng);
         addressBox.append(p3).append(p4).append(p5).append(p6);
         galleryBox.append(addressBox);
+        //add addresses and maps
         loadData(element.lat,element.lng, addressBox, element.id);
+        //put object to objects array
+        var srcThumb =  element.photo;
+        var srcThumb =  srcThumb.replace("images/", "images/thumbnail_");
+        var obj =new Image(element.photo, srcThumb, element.lat, element.lng);
+        imgObjectsArray.push(obj);
     });
   }
     
@@ -53,6 +66,8 @@ $(function() {
         }).done(function(response){
                   //console.log(response);
      		    insertContent(response);
+                console.log(imgObjectsArray);
+                showGeneralMap();
     	 }).fail(function(error) {
            console.log(error);
        })
@@ -86,6 +101,7 @@ $(function() {
                 success: function(response) {  
                         //console.log(response);
                         photoUrl = response.split("||")[0];
+                        photoUrl = photoUrl.trim();
                         lat = response.split("||")[2];
                         lng = response.split("||")[3];
                         date = response.split("||")[1];
@@ -129,7 +145,7 @@ $(function() {
     
     addImage();
     
-//  maps
+//  individual maps
          
     //getting the addres from geocode api
     
@@ -145,6 +161,7 @@ $(function() {
         $.ajax({
             url: buildUrl(lat,lng)
         }).done(function(response){
+            //put address and pin to individual map
             renderData((response.results[1]),lat,lng, id, divToAppend); 
         }).fail(function(error){
             console.log(error);
@@ -153,7 +170,8 @@ $(function() {
     }  
     
     //show map and adress
-    function renderData(result,lat,lng, id, divToAppend){ 
+    function renderData(result,lat,lng, id, divToAppend){
+            
             var addressDom = $('<p>',{class: 'address'}).text(result.formatted_address);
             divToAppend.append(addressDom);
             var mapDiv = $('<div>',{class: 'map'}).attr('id', id);
@@ -167,12 +185,33 @@ $(function() {
                     position: uluru,
                     map: map
                 });
+        
+            
             };
             
 
+    //general map rendering 
+    function showGeneralMap(){
+            var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  //first photo, needs to be more flexible
+            var generalMap = new google.maps.Map(document.getElementById('general-map'), {
+                zoom: 13, //need to be more flexible
+                center: uluru, 
+
+            });
+
+                for (var i = 0; i < imgObjectsArray.length; i++) { 
+                var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
+                console.log(uluru);
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: generalMap,
+                    icon: imgObjectsArray[i].thumbnailSrc
+              });
+
+            }       
+    }
 
 
-    
     
     //end---------------------------------
 
