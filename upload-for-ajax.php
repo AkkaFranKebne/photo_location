@@ -16,7 +16,7 @@ include 'functions.php';
                         
           //move uploaded image into the folder
           if (move_uploaded_file($source, $target)) {
-              echo "$target";  //this is the return we want to achieve
+              echo "$target||";  //this is the return we want to achieve
               echo getCoords($target);
           }
           else {

@@ -18,7 +18,7 @@ $(function() {
         
 
   //variables for url
-  var apiUrl = 'http://localhost:3000/images/';
+  var apiUrl = 'http://192.168.1.193:3000/images/';  //for json-server test
 
 
   //Insert elements to DOM  
@@ -99,12 +99,16 @@ $(function() {
                 cache: false,             // To unable request pages to be cached
                 processData:false,        // To send DOMDocument or non processed data file it is set to false
                 success: function(response) {  
-                        //console.log(response);
+                        console.log(response);
                         photoUrl = response.split("||")[0];
                         photoUrl = photoUrl.trim();
                         lat = response.split("||")[2];
                         lng = response.split("||")[3];
                         date = response.split("||")[1];
+                        if  (date.indexOf("Warning") >= 0) { 
+                            console.log(date); 
+                            date = "NULL";
+                        }; //temporary fix for "Illegal IFD size" bug
                      
                         //retrieve post data
                         var title = $('input[name="title"]').val();

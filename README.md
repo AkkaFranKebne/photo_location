@@ -13,10 +13,12 @@ issues:
  
  to do:
  to test on win  edge and android chrome
+ 
+
 
 
 ad 2. 
-- add php image saving to json
+done: sql and json version
 
 
 
@@ -26,5 +28,5 @@ issues:
 
 
 ad 4.
-done
+general map: how to set the zoom to show all the pins?
 

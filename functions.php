@@ -69,9 +69,9 @@
                             $longitude = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
                             //date
                             $daytime = $exif["IFD0"]["DateTime"];  //variable we need
-                            echo   "||".$daytime."||".$latitude."||".$longitude;                
+                            echo   $daytime."||".$latitude."||".$longitude;                
                             }
-                        else {echo "<p class='coord'>Brak koordytat GPS dla tego zdjecia :( Nie mozna pokazac go na mapie.</p>";}
+                        else {echo "NULL||NULL||NULL";}
        }
 
                               
