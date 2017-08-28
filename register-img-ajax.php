@@ -28,6 +28,7 @@
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type=submit name='upload' value='upload'>   
     </form>
+    <p id='info'></p>
      <div class="title"><h1>Mapa zdjęć:</h1></div>
         <div class="map" id="general-map"></div>
         <div class="title"><h1>Galeria zdjęć:</h1></div>

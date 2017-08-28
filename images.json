@@ -71,6 +71,33 @@
       "lng": "NULL",
       "date": "NULL",
       "id": 8
+    },
+    {
+      "title": "zdjtko z win nokia",
+      "alt": "kolorowo",
+      "photo": "images/59a460f83492b.jpg",
+      "lat": "47.678561666667",
+      "lng": "-122.13111555556",
+      "date": "NULL",
+      "id": 9
+    },
+    {
+      "title": "kat again",
+      "alt": "this cat is nice!",
+      "photo": "images/59a469b56c7a0.JPG",
+      "lat": "51.114441666667",
+      "lng": "17.048447222222",
+      "date": "2017:08:23 18:48:46",
+      "id": 10
+    },
+    {
+      "title": "qwqw",
+      "alt": "eqe",
+      "photo": "images/59a46a6846bb4.jpg",
+      "lat": "NULL",
+      "lng": "NULL",
+      "date": "NULL",
+      "id": 11
     }
   ]
 }

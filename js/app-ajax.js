@@ -105,7 +105,7 @@ $(function() {
                         lat = response.split("||")[2];
                         lng = response.split("||")[3];
                         date = response.split("||")[1];
-                        if  (date.indexOf("Warning") >= 0) { 
+                        if  (date.indexOf("Warning") >= 0 ||date.indexOf("Notice") >= 0) { 
                             //console.log(date); 
                             date = "NULL";
                         }; //temporary fix for "Illegal IFD size" bug
@@ -136,6 +136,7 @@ $(function() {
                         }).done(function(response){
                                 //show images on the site
                                 loadImages();
+                                $('#info').text("obrazek dodany");
                                 //clear form
                                 $("form")[0].reset();
                          }).fail(function(error) {
@@ -176,7 +177,6 @@ $(function() {
     
     //show map and adress
     function renderData(result,lat,lng, id, divToAppend){
-            
             var addressDom = $('<p>',{class: 'address'}).text(result.formatted_address);
             divToAppend.append(addressDom);
             var mapDiv = $('<div>',{class: 'map'}).attr('id', id);
