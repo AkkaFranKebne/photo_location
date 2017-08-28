@@ -7,22 +7,28 @@
       "photo": "images/59a171b3231fb.JPG"
     },
     {
-      "id": 2,
-      "title": "Summer",
-      "alt": "look at my yummy supper",
-      "photo": "images/59a171b3231fb.JPG"
+      "title": "Kot 2",
+      "alt": "take a nap",
+      "photo": "    images/59a3b86f73913.JPG",
+      "id": 2
     },
     {
-      "title": "Manamana",
-      "alt": "tututu",
-      "photo": "images/59a171b3231fb.JPG",
-      "id": "3"
+      "title": "zombie",
+      "alt": "asas",
+      "photo": "    images/59a3b93d55456.jpg",
+      "id": 3
     },
     {
-      "title": "Wieczor",
-      "alt": "Robi sie chlodno",
-      "photo": "images/59a171b3231fb.JPG",
-      "id": "4"
+      "title": "Drawing",
+      "alt": "ddddd",
+      "photo": "    images/59a3b96dee085.jpg",
+      "id": 4
+    },
+    {
+      "title": "Orki",
+      "alt": "z Majorki",
+      "photo": "    images/59a3ba548cd64.jpg",
+      "id": 5
     }
   ]
 }

@@ -23,10 +23,10 @@
     <form action='#' method = post enctype="multipart/form-data">
         <p>Wybierz zdjęcie</p>
         <input type=hidden name=size value='1000000'>
-        <input type=file  name=image  >
+        <input type=file  name=image id='file' required >
         <p>Nadaj tytuł: </p><input type=text name=title >
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
-        <input type=submit name = 'upload' value='upload'>
+        <input type=submit name='upload' value='upload'>   
     </form>
      <div class="title"><h1>Mapa zdjęć:</h1></div>
         <div class="map" id="general-map"></div>
