@@ -49,45 +49,6 @@ $(function() {
     
    //console.log(imgObjectsArray);
      
-    
-    //general map rendering 
-    var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  
-    var generalMap = new google.maps.Map(document.getElementById('general-map'), {
-        zoom: 13, 
-        center: uluru, 
-
-    });
-    
-    //markers on general map
-    
-        // setting the  custom area for map
-                var bounds = new google.maps.LatLngBounds();
-        /*
-            for (var i = 0; i < locations.length; i++) { 
-                var uluru = {lat: locations[i][0], lng: locations[i][1]};
-                //console.log(uluru);
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: generalMap
-              });
-
-            }*/
-    
-        for (var i = 0; i < imgObjectsArray.length; i++) {
-                if (imgObjectsArray[i].lat !=="NULL"){
-                        var uluru = {lat: imgObjectsArray[i].lat, lng: imgObjectsArray[i].lng};
-                        //console.log(uluru);
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: generalMap,
-                            icon: imgObjectsArray[i].thumbnailSrc
-                      });
-                          // setting the  custom area for map
-                           bounds.extend(marker.getPosition());      
-                }
-            // setting the  custom area for map
-            generalMap.fitBounds(bounds);
-    }
         
     
     //getting the addres from geocode api
@@ -171,7 +132,39 @@ $(function() {
     showLocationForImages();
     
     
-     
+    
+    //general map
+            var uluru = {lat: parseFloat(imgObjectsArray[0].lat), lng: parseFloat(imgObjectsArray[0].lng)};  
+            var generalMap = new google.maps.Map(document.getElementById('general-map'), {
+                zoom: 13, 
+                center: uluru, 
+
+            });
+    
+    //markers on general map
+    
+     //pins
+                // setting the  custom area for map
+                var bounds = new google.maps.LatLngBounds();
+        
+                //for pins generating
+                for (var i = 0; i < imgObjectsArray.length; i++) { 
+                    if ($.isNumeric(imgObjectsArray[i].lat) ){
+                             var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
+                            //console.log(uluru);
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: generalMap,
+                                icon: imgObjectsArray[i].thumbnailSrc
+                          });
+                            // setting the  custom area for map
+                           bounds.extend(marker.getPosition());                       
+                    }
+            }
+    
+    
+            // setting the  custom area for map
+            generalMap.fitBounds(bounds); 
     
     
     //end---------------------

@@ -124,8 +124,8 @@ alt
                                     echo "$key.$name: $val<br />\n";
                                         }
                                    // }
-                                }*/
-                        
+                                }
+                        */
                             //check if image needs rotation    
                             $ort = $exif["IFD0"]["Orientation"];
                             echo "<p class='address'>Orientation: $ort</p>";

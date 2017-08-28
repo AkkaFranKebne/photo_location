@@ -18,7 +18,7 @@ issues:
 
 
 ad 2. 
-done: see sql and json version
+done: 
 
 
 

@@ -219,9 +219,9 @@ $(function() {
             */
         
             //map
-            var uluru = {lat: parseFloat(imgObjectsArray[0].lat), lng: parseFloat(imgObjectsArray[0].lng)};  //first photo, needs to be more flexible
+            var uluru = {lat: parseFloat(imgObjectsArray[0].lat), lng: parseFloat(imgObjectsArray[0].lng)};  
             var generalMap = new google.maps.Map(document.getElementById('general-map'), {
-                zoom: 13, //need to be more flexible
+                zoom: 13, 
                 center: uluru, 
 
             });

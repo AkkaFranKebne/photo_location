@@ -37,13 +37,40 @@
       "id": 4
     },
     {
-      "title": "Tuesday",
-      "alt": "Work!",
-      "photo": "images/59a3f3bbb866a.jpg",
+      "title": "test foto",
+      "alt": "To jest test android",
+      "photo": "images/59a44d961e4be.jpg",
       "lat": "NULL",
       "lng": "NULL",
       "date": "NULL",
       "id": 5
+    },
+    {
+      "title": "Test",
+      "alt": "to tez jest test",
+      "photo": "images/59a44dbebfcf1.jpg",
+      "lat": "NULL",
+      "lng": "NULL",
+      "date": "NULL",
+      "id": 6
+    },
+    {
+      "title": "Praca",
+      "alt": "Do pozna",
+      "photo": "images/59a45748d5ee5.jpg",
+      "lat": "NULL",
+      "lng": "NULL",
+      "date": "NULL",
+      "id": 7
+    },
+    {
+      "title": "Jez",
+      "alt": "Muzyk",
+      "photo": "images/59a45771109c5.jpg",
+      "lat": "NULL",
+      "lng": "NULL",
+      "date": "NULL",
+      "id": 8
     }
   ]
 }
