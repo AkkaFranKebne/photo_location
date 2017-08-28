@@ -1,22 +1,13 @@
 {
   "images": [
     {
-      "id": 1,
-      "title": "Dinner",
-      "alt": "This is my dinner",
-      "photo": "images/59a171b3231fb.JPG",
-      "lat": 51.03,
-      "lng": 17.02,
-      "date": "2017:08:23 17:57:47"
-    },
-    {
       "title": "Kot",
       "alt": "Na schwal",
       "photo": "images/59a3d6b4f310d.JPG",
       "lat": "51.114441666667",
       "lng": "17.048447222222",
       "date": "2017:08:23 18:48:46",
-      "id": 2
+      "id": 1
     },
     {
       "title": "Zamek",
@@ -25,7 +16,7 @@
       "lat": "51.145744444444",
       "lng": "16.870030555556",
       "date": "2017:08:27 12:58:43",
-      "id": 3
+      "id": 2
     },
     {
       "title": "Summer party",
@@ -34,12 +25,21 @@
       "lat": "50.004825",
       "lng": "19.232741666667",
       "date": "2017:08:15 14:46:27",
+      "id": 3
+    },
+    {
+      "title": "Monday",
+      "alt": "Work",
+      "photo": "images/59a3f1da1e1f6.jpg",
+      "lat": "NULL",
+      "lng": "NULL",
+      "date": "NULL",
       "id": 4
     },
     {
-      "title": "Mondsy",
-      "alt": "Work",
-      "photo": "images/59a3f1da1e1f6.jpg",
+      "title": "Tuesday",
+      "alt": "Work!",
+      "photo": "images/59a3f3bbb866a.jpg",
       "lat": "NULL",
       "lng": "NULL",
       "date": "NULL",

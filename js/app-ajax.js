@@ -136,6 +136,8 @@ $(function() {
                         }).done(function(response){
                                 //show images on the site
                                 loadImages();
+                                //clear form
+                                $("form")[0].reset();
                          }).fail(function(error) {
                            console.log(error);
                         });
@@ -143,7 +145,6 @@ $(function() {
                 
                 }
                 }); 
-   
         });
     }
     
