@@ -38,10 +38,9 @@ $(function() {
         var p4 = $('<p>', {class: "coord"}).text(element.lat);
         var p5 = $('<p>', {class: "coord"}).text("lng: ");
         var p6 = $('<p>', {class: "coord"}).text(element.lng);
-        var p7 = $('<p>', {class: "address"});
-        var map = $('<div>', {class: "map"}).attr('id', element.id);
-        addressBox.append(p3).append(p4).append(p5).append(p6).append(p7).append(map);
+        addressBox.append(p3).append(p4).append(p5).append(p6);
         galleryBox.append(addressBox);
+        loadData(element.lat,element.lng, addressBox, element.id);
     });
   }
     
@@ -130,7 +129,50 @@ $(function() {
     
     addImage();
     
+//  maps
+         
+    //getting the addres from geocode api
+    
+    
+    function buildUrl(lat,lng){
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
+        return url;
+    };
+    
+    //load data
+    
+    function loadData(lat,lng, divToAppend, id){
+        $.ajax({
+            url: buildUrl(lat,lng)
+        }).done(function(response){
+            renderData((response.results[1]),lat,lng, id, divToAppend); 
+        }).fail(function(error){
+            console.log(error);
+        })
+        
+    }  
+    
+    //show map and adress
+    function renderData(result,lat,lng, id, divToAppend){ 
+            var addressDom = $('<p>',{class: 'address'}).text(result.formatted_address);
+            divToAppend.append(addressDom);
+            var mapDiv = $('<div>',{class: 'map'}).attr('id', id);
+            mapDiv.insertAfter(addressDom);
+            var uluru = {lat: parseFloat(lat), lng: parseFloat(lng)};
+            var map = new google.maps.Map(document.getElementById(id), {
+                        zoom: 18,
+                        center: uluru
+            });
+            var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            };
+            
 
+
+
+    
     
     //end---------------------------------
 

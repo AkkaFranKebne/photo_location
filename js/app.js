@@ -121,7 +121,7 @@ $(function() {
             var addressDom = $('<p>',{class: 'address'}).text(address);
         //attach it to the specific place in dom
             lngs.each(function(index,value){
-                if ($(this).text() == lng){
+                if ($(this).text() == lng  &&  $(this).prev().prev().text() == lat  ){
                     addressDom.insertAfter($(this));
                     //map dom element
                     var mapDiv = $('<div>',{class: 'map'}).attr('id', index);
