@@ -18,7 +18,7 @@ issues:
 
 
 ad 2. 
-done: sql and json version
+done: see sql and json version
 
 
 
@@ -28,5 +28,5 @@ issues:
 
 
 ad 4.
-general map: how to set the zoom to show all the pins?
+done
 

@@ -51,14 +51,17 @@ $(function() {
      
     
     //general map rendering 
-    var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  //first photo, needs to be more flexible
+    var uluru = {lat: imgObjectsArray[0].lat, lng: imgObjectsArray[0].lng};  
     var generalMap = new google.maps.Map(document.getElementById('general-map'), {
-        zoom: 13, //need to be more flexible
+        zoom: 13, 
         center: uluru, 
 
     });
     
     //markers on general map
+    
+        // setting the  custom area for map
+                var bounds = new google.maps.LatLngBounds();
         /*
             for (var i = 0; i < locations.length; i++) { 
                 var uluru = {lat: locations[i][0], lng: locations[i][1]};
@@ -70,15 +73,20 @@ $(function() {
 
             }*/
     
-        for (var i = 0; i < imgObjectsArray.length; i++) { 
-        var uluru = {lat: imgObjectsArray[i].lat, lng: imgObjectsArray[i].lng};
-        //console.log(uluru);
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: generalMap,
-            icon: imgObjectsArray[i].thumbnailSrc
-      });
-        
+        for (var i = 0; i < imgObjectsArray.length; i++) {
+                if (imgObjectsArray[i].lat !=="NULL"){
+                        var uluru = {lat: imgObjectsArray[i].lat, lng: imgObjectsArray[i].lng};
+                        //console.log(uluru);
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: generalMap,
+                            icon: imgObjectsArray[i].thumbnailSrc
+                      });
+                          // setting the  custom area for map
+                           bounds.extend(marker.getPosition());      
+                }
+            // setting the  custom area for map
+            generalMap.fitBounds(bounds);
     }
         
     
