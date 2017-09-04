@@ -18,7 +18,7 @@ $(function() {
         
 
   //variables for url
-  var apiUrl = 'http://192.168.1.193:3000/images/';  //for json-server test
+  var apiUrl = 'http://192.168.1.193:3000/images/';  //for json-server test, try with localhost if it does not work
 
 
   //Insert elements to DOM  

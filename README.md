@@ -5,10 +5,12 @@
 3. photo shown on the page with description  and coordinates
 4. photo shown on the map;
 
+http://test.lokori.atthouse.pl/photo_location/register-img.php  sql version
+
 ### ad 1 + 2 
 Done via POST form.
 Then: 
- - version 1: sent to SQL database via PHP (see: register-img.php and app.js, screen of sql table attached - XAMPP used for test);
+ - version 1: sent to SQL database via PHP (see: register-img.php and app.js, screen of sql table attached - XAMPP used for test); 
  - version 2: sent to JSON via PHP (see: register-img-ajax.php,  app-ajax.js and images.json - json-server used for test)
  
  Information about coords and date of photoshoot taken from exif  data.
@@ -44,4 +46,7 @@ os=android&os_version=4.4&device=Samsung+Galaxy+Note+4&device_browser=chrome
 os=android&os_version=5.0&device=Motorola+Moto+G+2nd+Gen&device_browser=chrome
 os=iOS&os_version=9.0&device=iPhone+6S&device_browser=safari
 os=winphone&device=Nokia+Lumia+930&device_browser=edge
+
+
+http://localhost:3000/images
 
