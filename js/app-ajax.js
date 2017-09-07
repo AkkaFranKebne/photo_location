@@ -18,7 +18,8 @@ $(function() {
         
 
   //variables for url
-  var apiUrl = 'http://192.168.1.193:3000/images/';  //for json-server test, try with localhost if it does not work
+  //var apiUrl = 'http://192.168.1.193:3000/images/';  //for json-server test, try with localhost if it does not work
+  var apiUrl = 'http://localhost:3000/images/';  
 
 
   //Insert elements to DOM  
@@ -58,7 +59,7 @@ $(function() {
   }
     
 
-  //Load movies and insert them into the DOM
+  //Load images and insert them into the DOM
   
   function loadImages() {
         $.ajax({
@@ -225,6 +226,35 @@ $(function() {
                 center: uluru, 
 
             });
+        
+            //infowindows
+            
+            var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+            'sandstone rock formation in the southern part of the '+
+            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+            'south west of the nearest large town, Alice Springs; 450&#160;km '+
+            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+            'Aboriginal people of the area. It has many springs, waterholes, '+
+            'rock caves and ancient paintings. Uluru is listed as a World '+
+            'Heritage Site.</p>'+
+            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+            
+            var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+            });
+
+        
             //pins
                 // setting the  custom area for map
                 var bounds = new google.maps.LatLngBounds();
@@ -239,6 +269,11 @@ $(function() {
                                 map: generalMap,
                                 icon: imgObjectsArray[i].thumbnailSrc
                           });
+                            //infowindow opening
+                            marker.addListener('click', function() {
+                                    infowindow.open(generalMap, marker);
+                            });
+                            
                             // setting the  custom area for map
                            bounds.extend(marker.getPosition());                       
                     }
