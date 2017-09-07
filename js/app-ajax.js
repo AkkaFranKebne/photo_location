@@ -84,6 +84,36 @@ $(function() {
 
   loadImages();
     
+       //geolocator---------------------------------------------
+    
+    var positionLat;
+    var positionLng;
+    
+    // check for Geolocation support
+   $('input[name="geolocation"]').on('click', function(){
+        if ($(this).is(':checked')) {
+            if (navigator.geolocation) {
+                    console.log('Geolocation is supported!');
+                    $('#loader').show();
+                   var startPos;
+                   var geoSuccess = function(position) {
+                    startPos = position;
+                    positionLat = startPos.coords.latitude;
+                    positionLng = startPos.coords.longitude;
+                    console.log(positionLat);
+                    console.log(positionLng);  
+                     $('#geolocation-info').text("Lokalizacja pobrana"); 
+                       $('#loader').hide();
+                };
+                navigator.geolocation.getCurrentPosition(geoSuccess);
+            }
+            else {
+              alert('Ta przeglądarka nie wspiera geolokalizacji.');
+            }
+
+        }
+   });
+     
     
   //adding data to json---------------------------------------
     
@@ -113,6 +143,14 @@ $(function() {
                         photoUrl = photoUrl.trim();
                         lat = response.split("||")[2];
                         lng = response.split("||")[3];
+                        if ((lat =='NULL') && ($('input[name="geolocation"]').is(':checked'))) {
+                            console.log("checked");
+                            lat = positionLat;
+                            lng = positionLng;
+
+                            console.log(lat);
+                            console.log(lng);
+                        };
                         date = response.split("||")[1];
                         if  (date.indexOf("Warning") >= 0 ||date.indexOf("Notice") >= 0) { 
                             //console.log(date); 
@@ -182,6 +220,7 @@ $(function() {
         })
         
     }  
+    
     //  individual maps - not used
     //show adress and add it to object
     function renderData(result,lat,lng, id, divToAppend){
@@ -296,25 +335,7 @@ $(function() {
                 
     };
     
-    //geolocator
-    
-    // check for Geolocation support
-            if (navigator.geolocation) {
-              console.log('Geolocation is supported!');
-            var startPos;
-                var geoSuccess = function(position) {
-                    startPos = position;
-                    var positionLat = startPos.coords.latitude;
-                    var positionLng = startPos.coords.longitude;
-                    console.log(positionLat);
-                    console.log(positionLng);
-                };
-                navigator.geolocation.getCurrentPosition(geoSuccess);
-            }
-            else {
-              console.log('Geolocation is not supported for this Browser/OS.');
-            }
-     
+ 
     //end---------------------------------
 
 });

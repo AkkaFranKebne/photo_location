@@ -121,10 +121,22 @@ input:focus {
 .time {
     font-size: 3.8vmin;
     color: grey;
-    padding: 1vmin;
     line-height: 9vmin;
 }
-    
+#geolocation-info, #info{
+    color: green;
+}
+
+#loader {
+    display: none;
+    margin: 0 auto;
+    height: 10vmin;
+    width: 10vmin;
+    background-image: url(../loader.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}    
 
 .gallery{
     height: auto;

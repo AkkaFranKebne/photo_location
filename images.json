@@ -28,76 +28,22 @@
       "id": 3
     },
     {
-      "title": "Monday",
-      "alt": "Work",
-      "photo": "images/59a3f1da1e1f6.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
-      "date": "NULL",
-      "id": 4
-    },
-    {
-      "title": "test foto",
-      "alt": "To jest test android",
-      "photo": "images/59a44d961e4be.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
-      "date": "NULL",
-      "id": 5
-    },
-    {
-      "title": "Test",
-      "alt": "to tez jest test",
-      "photo": "images/59a44dbebfcf1.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
-      "date": "NULL",
-      "id": 6
-    },
-    {
-      "title": "Praca",
-      "alt": "Do pozna",
-      "photo": "images/59a45748d5ee5.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
-      "date": "NULL",
-      "id": 7
-    },
-    {
-      "title": "Jez",
-      "alt": "Muzyk",
-      "photo": "images/59a45771109c5.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
-      "date": "NULL",
-      "id": 8
-    },
-    {
-      "title": "zdjtko z win nokia",
+      "title": "zdjecie z win nokia",
       "alt": "kolorowo",
       "photo": "images/59a460f83492b.jpg",
       "lat": "47.678561666667",
       "lng": "-122.13111555556",
       "date": "NULL",
-      "id": 9
+      "id": 4
     },
     {
-      "title": "kat again",
-      "alt": "this cat is nice!",
-      "photo": "images/59a469b56c7a0.JPG",
-      "lat": "51.114441666667",
-      "lng": "17.048447222222",
-      "date": "2017:08:23 18:48:46",
-      "id": 10
-    },
-    {
-      "title": "qwqw",
-      "alt": "eqe",
-      "photo": "images/59a46a6846bb4.jpg",
-      "lat": "NULL",
-      "lng": "NULL",
+      "title": "orka",
+      "alt": "Hawk and Frank examine the pages, which describe a dream in which Annie tells Laura that the good Dale is trapped in the Black Lodge.",
+      "photo": "images/59b114e0bcba5.jpg",
+      "lat": "50.049106699999996",
+      "lng": "19.947796999999998",
       "date": "NULL",
-      "id": 11
+      "id": 5
     }
   ]
 }
