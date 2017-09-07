@@ -85,6 +85,13 @@ input[type=button], input[type=submit] {
     margin: 0 auto;
 }
 
+input[type=checkbox] {
+    background-color: lightgrey;
+    font-size: 7vmin;
+    height: 7vmin;
+    width: 7vmin;  
+}
+
 input[type="file" i]  {
     font-size: 4vmin;
     color: grey;
@@ -114,7 +121,10 @@ input:focus {
 .time {
     font-size: 3.8vmin;
     color: grey;
+    padding: 1vmin;
+    line-height: 9vmin;
 }
+    
 
 .gallery{
     height: auto;

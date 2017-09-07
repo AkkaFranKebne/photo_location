@@ -26,6 +26,7 @@
         <input type=file  name=image id='file' required >
         <p>Nadaj tytuł: </p><input type=text name=title >
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
+        <input type="checkbox" name="geolocation" value="agree"> <span class="time">Użyj mojej obecnej lokalizacji</span> <br>
         <input type=submit name='upload' value='upload'>   
     </form>
     <p id='info'></p>

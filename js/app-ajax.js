@@ -46,13 +46,16 @@ $(function() {
         galleryBox.append(imageBox);
         imageBox.append(picture);
         picture.append(img);
+        
         var addressBox = $('<div>', {class: "address-box"});
+        /*
         var p3 = $('<p>', {class: "coord"}).text("lat: ");
         var p4 = $('<p>', {class: "coord"}).text(element.lat);
         var p5 = $('<p>', {class: "coord"}).text("lng: ");
         var p6 = $('<p>', {class: "coord"}).text(element.lng);
         addressBox.append(p3).append(p4).append(p5).append(p6);
         galleryBox.append(addressBox);
+        */
         //add addresses 
         loadData(element.lat,element.lng, addressBox, element.id);
         //put object to objects array
@@ -182,15 +185,14 @@ $(function() {
     //  individual maps - not used
     //show adress and add it to object
     function renderData(result,lat,lng, id, divToAppend){
+        /*
             var addressDom = $('<p>',{class: 'address'}).text(result.formatted_address);
-            divToAppend.append(addressDom);
+            divToAppend.append(addressDom);*/
             for (var i = 0; i < imgObjectsArray.length; i++) { 
              if (imgObjectsArray[i].id == id) {
-                 console.log('tak!');
                  imgObjectsArray[i].address = result.formatted_address;
-                 console.log(imgObjectsArray[i].address);
              }
-            console.log(imgObjectsArray[i]);
+            //console.log(imgObjectsArray[i]);
             }
             showGeneralMap();
 
@@ -293,6 +295,25 @@ $(function() {
             generalMap.fitBounds(bounds);
                 
     };
+    
+    //geolocator
+    
+    // check for Geolocation support
+            if (navigator.geolocation) {
+              console.log('Geolocation is supported!');
+            var startPos;
+                var geoSuccess = function(position) {
+                    startPos = position;
+                    var positionLat = startPos.coords.latitude;
+                    var positionLng = startPos.coords.longitude;
+                    console.log(positionLat);
+                    console.log(positionLng);
+                };
+                navigator.geolocation.getCurrentPosition(geoSuccess);
+            }
+            else {
+              console.log('Geolocation is not supported for this Browser/OS.');
+            }
      
     //end---------------------------------
 
