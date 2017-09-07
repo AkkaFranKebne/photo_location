@@ -9,11 +9,16 @@ $(function() {
    //image object
     var imgObjectsArray = [];
     
-    function Image(imgSrc, thumbnailSrc, lat, lng){
+    function Image(id, imgSrc, thumbnailSrc, lat, lng, title, desc, date, address){
+        this.id = id;
         this.imgSrc = imgSrc;
         this.thumbnailSrc = thumbnailSrc;
         this.lat = lat;
         this.lng = lng;
+        this.title = title;
+        this.desc = desc;
+        this.date = date;
+        this.address = address
     }
         
 
@@ -48,12 +53,12 @@ $(function() {
         var p6 = $('<p>', {class: "coord"}).text(element.lng);
         addressBox.append(p3).append(p4).append(p5).append(p6);
         galleryBox.append(addressBox);
-        //add addresses and maps
+        //add addresses 
         loadData(element.lat,element.lng, addressBox, element.id);
         //put object to objects array
         var srcThumb =  element.photo;
         var srcThumb =  srcThumb.replace("images/", "images/thumbnail_");
-        var obj =new Image(element.photo, srcThumb, element.lat, element.lng);
+        var obj =new Image(element.id, element.photo, srcThumb, element.lat, element.lng, element.title, element.alt, element.date);
         imgObjectsArray.push(obj);
     });
   }
@@ -68,7 +73,7 @@ $(function() {
                   //console.log(response);
      		    insertContent(response);
                 //console.log(imgObjectsArray);
-                showGeneralMap();
+                //showGeneralMap();
     	 }).fail(function(error) {
            console.log(error);
        })
@@ -152,7 +157,7 @@ $(function() {
     
     addImage();
     
-//  individual maps
+
          
     //getting the addres from geocode api
     
@@ -168,18 +173,28 @@ $(function() {
         $.ajax({
             url: buildUrl(lat,lng)
         }).done(function(response){
-            //put address and pin to individual map
-            renderData((response.results[1]),lat,lng, id, divToAppend); 
+            renderData((response.results[1]),lat,lng, id, divToAppend);
         }).fail(function(error){
             console.log(error);
         })
         
     }  
-    
-    //show map and adress
+    //  individual maps - not used
+    //show adress and add it to object
     function renderData(result,lat,lng, id, divToAppend){
             var addressDom = $('<p>',{class: 'address'}).text(result.formatted_address);
             divToAppend.append(addressDom);
+            for (var i = 0; i < imgObjectsArray.length; i++) { 
+             if (imgObjectsArray[i].id == id) {
+                 console.log('tak!');
+                 imgObjectsArray[i].address = result.formatted_address;
+                 console.log(imgObjectsArray[i].address);
+             }
+            console.log(imgObjectsArray[i]);
+            }
+            showGeneralMap();
+
+        /*
             var mapDiv = $('<div>',{class: 'map'}).attr('id', id);
             mapDiv.insertAfter(addressDom);
             var uluru = {lat: parseFloat(lat), lng: parseFloat(lng)};
@@ -192,7 +207,7 @@ $(function() {
                     map: map
                 });
         
-            
+            */
             };
             
 
@@ -226,52 +241,48 @@ $(function() {
                 center: uluru, 
 
             });
-        
-            //infowindows
-            
-            var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-            'sandstone rock formation in the southern part of the '+
-            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-            'south west of the nearest large town, Alice Springs; 450&#160;km '+
-            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-            'Aboriginal people of the area. It has many springs, waterholes, '+
-            'rock caves and ancient paintings. Uluru is listed as a World '+
-            'Heritage Site.</p>'+
-            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-            '(last visited June 22, 2009).</p>'+
-            '</div>'+
-            '</div>';
-            
-            var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-            });
-
-        
+                
             //pins
                 // setting the  custom area for map
                 var bounds = new google.maps.LatLngBounds();
+        
+            //infowindow
+            var infowindow = new google.maps.InfoWindow({
+                    //content: imgObjectsArray[i].infoWindowContent
+              });
         
                 //for pins generating
                 for (var i = 0; i < imgObjectsArray.length; i++) { 
                     if (imgObjectsArray[i].lat !=="NULL"){
                              var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
-                            //console.log(uluru);
+                            //console.log(imgObjectsArray[i]);
                             var marker = new google.maps.Marker({
                                 position: uluru,
                                 map: generalMap,
-                                icon: imgObjectsArray[i].thumbnailSrc
+                                icon: imgObjectsArray[i].thumbnailSrc,
+                                content: '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h3  class="title">'+
+                                        imgObjectsArray[i].title +
+                                        '</h3>'+
+                                        '<div id="bodyContent">'+
+                                        '<p class="time">'+
+                                        imgObjectsArray[i].date +
+                                        '</p>'+
+                                        '<p class="address">'+
+                                        imgObjectsArray[i].address +
+                                        '</p>'+
+                                        '<p class="desc">'+
+                                        imgObjectsArray[i].desc +
+                                        '</p>'+
+                                        '</div>'+
+                                        '</div>'
                           });
-                            //infowindow opening
+                            //infowindow 
                             marker.addListener('click', function() {
-                                    infowindow.open(generalMap, marker);
+                                    infowindow.setContent(this.content); 
+                                    infowindow.open(generalMap, this);
                             });
                             
                             // setting the  custom area for map
