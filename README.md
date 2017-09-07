@@ -13,12 +13,10 @@ Then:
  - version 1: sent to SQL database via PHP (see: register-img.php and app.js, screen of sql table attached - XAMPP used for test); 
  - version 2: sent to JSON via PHP (see: register-img-ajax.php,  app-ajax.js and images.json - json-server used for test)
  
- Information about coords and date of photoshoot taken from exif  data.
+ Information about coords and date of photoshoot taken from exif  data, if not avaliable - from geolocation.
  
 #### issues:
-- not all mobile phones provides exif GPS data;;
-- noticed at ios, safari: no coords for photos taken in Safari directly: error  "Illegal IFD size" known issue, see:  https://bugs.php.net/bug.php?id=50660;
-- is it acceptable or the other solution should be introduced (eg GEO Location API https://developers.google.com/web/fundamentals/native-hardware/user-location/, however it would be location in the moment of adding the photo, not in the moment of taking the photo... ) 
+- Safari: [blocked] Access to geolocation was blocked over insecure connection to http://localhost. >> https needed https://stackoverflow.com/questions/39633313/got-an-error-when-trying-to-get-the-geolocation-in-safari-on-ios-10
  
 
 ### ad 3.
@@ -29,7 +27,7 @@ Done in a form of one-page web app, styled for rwd with CSS (see style.css)
 
 
 ### ad 4.
-Done via Google Maps JS. Every photo that has coordinates has it's own map, one general map is provided for all images with coords.
+Done via Google Maps JS. O general map is provided for all images with coords, infowindow after click.
 
 
 ### Tested:
@@ -49,4 +47,6 @@ os=winphone&device=Nokia+Lumia+930&device_browser=edge
 
 
 http://localhost:3000/images
+
+
 
