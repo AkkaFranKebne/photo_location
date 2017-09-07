@@ -16,7 +16,9 @@ Then:
  Information about coords and date of photoshoot taken from exif  data, if not avaliable - from geolocation.
  
 #### issues:
-- Safari: [blocked] Access to geolocation was blocked over insecure connection to http://localhost. >> https needed https://stackoverflow.com/questions/39633313/got-an-error-when-trying-to-get-the-geolocation-in-safari-on-ios-10
+- Safari and mobile safari: [blocked] Access to geolocation was blocked over insecure connection to http://localhost. >> https needed https://stackoverflow.com/questions/39633313/got-an-error-when-trying-to-get-the-geolocation-in-safari-on-ios-10
+Chrome:  https://developers.google.com/web/updates/2016/04/geolocation-on-secure-contexts-only
+
  
 
 ### ad 3.
@@ -34,7 +36,7 @@ Done via Google Maps JS. O general map is provided for all images with coords, i
 
 #### Directly:
 
-- iphone 5c (ios), Safari up to date for 28.08.2017  - provides coords for photos from Gallery, issue for photos taken directly via Safari - described above, images rotated properly, application works properly; 
+- iphone 5c (ios), Safari up to date for 28.08.2017  - https necesarry (see above)
 - Karbonn android one - not provides coords, images rotated properly, application works properly)
 
 #### Virtually:

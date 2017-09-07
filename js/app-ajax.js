@@ -147,9 +147,8 @@ $(function() {
                             console.log("checked");
                             lat = positionLat;
                             lng = positionLng;
-
-                            console.log(lat);
-                            console.log(lng);
+                            //console.log(lat);
+                            //console.log(lng);
                         };
                         date = response.split("||")[1];
                         if  (date.indexOf("Warning") >= 0 ||date.indexOf("Notice") >= 0) { 
