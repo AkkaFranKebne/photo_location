@@ -1,4 +1,6 @@
-
+<?php
+include 'default.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -9,8 +11,9 @@
     <!-- jquery-->
     <script src="js/jquery-3.2.1.min.js"> </script>
     <!--google maps api -->
-    <script  defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxM6O5--X2cBLxhNlqgG6ViC-fR2VspFE"> </script>
+   <script  defer src="<?php echo "https://maps.googleapis.com/maps/api/js?key=". $google_maps_api_key;?>"> </script>
     <!-- javascript -->
+    <script src="js/default.js"> </script>
     <script src="js/app-ajax.js"> </script>
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">

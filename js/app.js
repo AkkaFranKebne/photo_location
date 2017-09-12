@@ -5,7 +5,7 @@ $(function() {
     var lngs = $('.lng');
     var images  = $('.gallery-image');
     
-    
+     
     //array from coords
     /*
     var locations = [];
@@ -56,8 +56,8 @@ $(function() {
     //var coordUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=51.114238888889,17.048241666667&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
     
     
-    function buildUrl(lat,lng){
-        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
+    function buildUrl(lat,lng,googleMapApiKey){
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+googleMapApiKey;
         return url;
     };
     
@@ -66,7 +66,7 @@ $(function() {
     function loadData(lat,lng){
         $.ajax({
             //url: coordUrl  
-            url: buildUrl(lat,lng)
+            url: buildUrl(lat,lng,googleMapApiKey)
         }).done(function(response){
             //console.log(response.results[1]);
             renderData((response.results[1]),lat,lng); 

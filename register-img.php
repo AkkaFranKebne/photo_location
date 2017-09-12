@@ -1,6 +1,7 @@
 <?php
 include 'elements_db_connection.php';
 include 'functions.php';
+include 'default.php';
     
 /*
 tabela zdjecia stworzona w phpmyadmin/sql
@@ -23,8 +24,9 @@ alt
     <title>Photos location</title>
     <!-- jquery-->
     <script src="js/jquery-3.2.1.min.js"> </script>
+    <script src="js/default.js"> </script>
     <!--google maps api -->
-    <script  defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxM6O5--X2cBLxhNlqgG6ViC-fR2VspFE"> </script>
+    <script  defer src="<?php echo "https://maps.googleapis.com/maps/api/js?key=". $google_maps_api_key;?>"> </script>
     <!-- javascript -->
     <script src="js/app.js"> </script>
     <!-- css -->
@@ -63,7 +65,8 @@ alt
             $target = "images/".$image; 
               
             //send data to sql
-            $sql = "INSERT INTO lemoniada_test.zdjecia (photo, title, alt) VALUES ('$image', '$title', '$alt')";          
+            
+            $sql = "INSERT INTO ". $table_name ." (".$table_var_photo.", ".$table_var_title.", ".$table_var_alt.") VALUES ('$image', '$title', '$alt')";          
             if ($conn->query($sql) === TRUE) {
                     echo "<p>Nowy wpis dodany</p>";
             } else {
@@ -102,7 +105,7 @@ alt
     
  
     //show the uploaded files
-    $sql = "SELECT title, photo, alt FROM lemoniada_test.zdjecia" ;
+    $sql = "SELECT ".$table_var_title.", ".$table_var_photo.", ".$table_var_alt." FROM ". $table_name;
             $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {

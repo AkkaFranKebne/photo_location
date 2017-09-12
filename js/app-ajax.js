@@ -21,12 +21,6 @@ $(function() {
         this.address = address
     }
         
-
-  //variables for url
-  //var apiUrl = 'http://192.168.43.184:3000/images/';  //for json-server test, try with localhost if it does not work
-  var apiUrl = 'http://localhost:3000/images/';  
-
-
   //Insert elements to DOM  
   function insertContent(images) {
       //console.log(images);
@@ -202,8 +196,8 @@ $(function() {
     //getting the addres from geocode api
     
     
-    function buildUrl(lat,lng){
-        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyDkf3ZQGhxG3bpejJMqRRO3DkeVMUY5adk';
+   function buildUrl(lat,lng,googleMapApiKey){
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+googleMapApiKey;
         return url;
     };
     
@@ -211,7 +205,7 @@ $(function() {
     
     function loadData(lat,lng, divToAppend, id){
         $.ajax({
-            url: buildUrl(lat,lng)
+            url: buildUrl(lat,lng,googleMapApiKey)
         }).done(function(response){
             renderData((response.results[1]),lat,lng, id, divToAppend);
         }).fail(function(error){
