@@ -44,6 +44,15 @@
       "lng": "19.947796999999998",
       "date": "NULL",
       "id": 5
+    },
+    {
+      "title": "Burrito",
+      "alt": "wrwrw wrwwr wrwerw",
+      "photo": "images/59b18a2100c54.jpg",
+      "lat": "50.04906",
+      "lng": "19.947741399999998",
+      "date": "NULL",
+      "id": 6
     }
   ]
 }
