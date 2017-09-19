@@ -29,8 +29,8 @@ alt
     <script  defer src="<?php echo "https://maps.googleapis.com/maps/api/js?key=". $google_maps_api_key;?>"> </script>
     <!-- javascript -->
     <script src="js/app.js"> </script>
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- css 
+    <link rel="stylesheet" href="css/style.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
 </head>
 <body id ="register_form">
@@ -63,6 +63,8 @@ alt
             //source and target to save at the server
             $source = $_FILES['image']['tmp_name'];
             $target = "images/".$image; 
+                echo "source: ".$source;
+              echo "target: ".$target;
               
             //send data to sql
             
