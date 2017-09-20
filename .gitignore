@@ -4,4 +4,7 @@ node_modules
 package.json
 js/jquery-3.2.1.min.js
 images
-elements_db_connection.php
+default.php
+default_sample.php
+js/default.js
+js/default_sample.js
