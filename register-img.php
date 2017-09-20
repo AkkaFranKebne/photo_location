@@ -1,16 +1,20 @@
 <?php
 include 'elements_db_connection.php';
 include 'functions.php';
-include 'default.php';
+
+//error_reporting(E_ALL);
+//ini_set('display_errors',1);
     
 /*
-tabela zdjecia stworzona w phpmyadmin/sql
+tabela zdjecia 
 
 id
 photo
 title
 alt
 */
+
+//phpinfo() ;
 
 
 ?>
@@ -29,8 +33,8 @@ alt
     <script  defer src="<?php echo "https://maps.googleapis.com/maps/api/js?key=". $google_maps_api_key;?>"> </script>
     <!-- javascript -->
     <script src="js/app.js"> </script>
-    <!-- css 
-    <link rel="stylesheet" href="css/style.css">-->
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
 </head>
 <body id ="register_form">
@@ -62,10 +66,9 @@ alt
             $title = $_POST["title"];
             //source and target to save at the server
             $source = $_FILES['image']['tmp_name'];
-            $target = "images/".$image; 
-                echo "source: ".$source;
-              echo "target: ".$target;
-              
+              //echo "source: ".$source;
+            $target = $_SERVER['DOCUMENT_ROOT'] .'/images/'.$image; 
+              //echo "target: ".$target;
             //send data to sql
             
             $sql = "INSERT INTO ". $table_name ." (".$table_var_photo.", ".$table_var_title.", ".$table_var_alt.") VALUES ('$image', '$title', '$alt')";          
@@ -80,7 +83,7 @@ alt
               $msg = "<p>obrazek uploadowany</p>";
           }
           else {
-              $msg = "<p class='error'>problem z uploadowaniem obrazka</p>";
+              $msg = "<p class='error'>problem z uploadowaniem obrazka</p>".$_FILES['image']['error'];
           }
           echo '<br>';
           echo $msg;
@@ -108,7 +111,9 @@ alt
  
     //show the uploaded files
     $sql = "SELECT ".$table_var_title.", ".$table_var_photo.", ".$table_var_alt." FROM ". $table_name;
+    //echo $sql;
             $result = $conn->query($sql);
+            //echo "rezultat". $result;
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         //get photo

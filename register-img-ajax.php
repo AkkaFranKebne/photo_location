@@ -1,5 +1,6 @@
 <?php
 include 'default.php';
+include 'elements_db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +31,8 @@ include 'default.php';
         <p>Nadaj tytuł: </p><input type=text name=title >
         <p>Dodaj opis:</p> <textarea type=text name=alt col=40 row = 4></textarea><br>
         <input type="checkbox" name="geolocation" value="agree"> <span class="time">Użyj mojej obecnej lokalizacji</span> <div id='loader'></div><p class="time" id='geolocation-info'></p> <br>
+        <input id = 'lat' type=text name=lat >
+        <input id = 'lng' type=text name=lng >
         <input type=submit name='upload' value='upload'>   
     </form>
     <p id='info'></p>
@@ -37,6 +40,8 @@ include 'default.php';
         <div class="map" id="general-map"></div>
         <div class="title"><h1>Galeria zdjęć:</h1></div>
         <div id="images-div"></div>
+    
+    
 </body>
 </html>
     

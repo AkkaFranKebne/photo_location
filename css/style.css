@@ -105,6 +105,12 @@ input:focus {
     color: red;
 }
 
+/* coords */
+
+#lat, #lng {
+    display: none;
+}
+
 /*gallery*/
 
 .gallery-box{

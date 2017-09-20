@@ -1,4 +1,5 @@
 <?php
+include 'elements_db_connection.php';
 include 'functions.php';
         
       if ($_SERVER['REQUEST_METHOD'] === 'POST'  )  {
@@ -8,11 +9,24 @@ include 'functions.php';
             $fileData = pathinfo(basename($_FILES["image"]["name"]));
             $image = uniqid() . '.' . $fileData['extension'];
             $filename = $image;
-            $alt = $_POST["alt"];
-            $title = $_POST["title"];
+            $alt = $_POST[$table_var_alt];
+            $title = $_POST[$table_var_title];
+            $lat = $_POST[$table_var_lat];
+            $lng = $_POST[$table_var_lng];
             //source and target to save at the server
             $source = $_FILES['image']['tmp_name'];
             $target = "images/".$image; 
+              
+            //ADDED: send data to sql
+            
+            $sql = "INSERT INTO ". $table_name ." (".$table_var_photo.", ".$table_var_title.", ".$table_var_alt.", ".$table_var_lat.", ".$table_var_lng.") VALUES ('$image', '$title', '$alt', '$lat', '$lng')";          
+            if ($conn->query($sql) === TRUE) {
+                    echo "<p>Nowy wpis dodany</p>";
+            } else {
+                    echo "<p>Error: " . $sql . "<br>" . $conn->error."</p>";
+            }
+              
+            
                         
           //move uploaded image into the folder
           if (move_uploaded_file($source, $target)) {
@@ -31,10 +45,14 @@ include 'functions.php';
     } else 
       {
           echo "<p class='error'>Obrazek nie zostal zalaczony.</p>";
-      echo var_dump($_POST);
-      echo var_dump($_FILES);
+      //echo var_dump($_POST);
+      //echo var_dump($_FILES);
        }
 
 
 
 ?>
+
+
+
+    

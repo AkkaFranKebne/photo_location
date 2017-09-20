@@ -7,7 +7,13 @@
             //check if img is jpg
             if( preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename) || preg_match('/[.](png)$/', $filename) || preg_match('/[.](PNG)$/', $filename)) {
                 //create image from file
-                $im = imagecreatefromjpeg('images/'. $filename);
+                if( preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename)) {
+                        
+                        $im = imagecreatefromjpeg('images/'. $filename);
+                }
+                else {
+                      $im = imagecreatefrompng('images/'. $filename);
+                }
                 //save to variables orginal height and width of the image
                 $ox = imagesx($im);
                 $oy = imagesy($im);
@@ -25,7 +31,7 @@
                 if (preg_match('/[.](jpg)$/', $filename) || preg_match('/[.](JPG)$/', $filename)) {
                     imagejpeg($nm, 'images/thumbnail_'. $filename);
                 }
-                //creates a JPEG file from the given image.; Output image to browser or file
+                //creates a png file from the given image.; Output image to browser or file
                 if (preg_match('/[.](png)$/', $filename) || preg_match('/[.](PNG)$/', $filename)) {
                     imagepng($nm, 'images/thumbnail_'. $filename);
                 }
@@ -33,7 +39,7 @@
                 //$tn = '<img src="' . 'images/thumbnail_'. $filename . '" alt="image" />';
             //echo $tn;
                 }
-        else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg lub jpg.Sprobuj ponownie.</p>";}
+        else { echo "<p class='error'>Obrazek nie zostal wygenerowany. Obrazek musi byc w formacie jpg lub png.Sprobuj ponownie.</p>";}
     }
 
 

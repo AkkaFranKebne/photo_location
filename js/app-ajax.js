@@ -9,6 +9,8 @@ $(function() {
    //image object
     var imgObjectsArray = [];
     
+    
+    
     function Image(id, imgSrc, thumbnailSrc, lat, lng, title, desc, date, address){
         this.id = id;
         this.imgSrc = imgSrc;
@@ -23,7 +25,6 @@ $(function() {
         
   //Insert elements to DOM  
   function insertContent(images) {
-      //console.log(images);
       //clear what was there before - to avoid duplicates
       imagesDiv.empty();
       //add updated content
@@ -51,7 +52,9 @@ $(function() {
         galleryBox.append(addressBox);
         */
         //add addresses 
-        loadData(element.lat,element.lng, addressBox, element.id);
+        if (element.lat){
+            loadData(element.lat,element.lng, addressBox, element.id);
+        }
         //put object to objects array
         var srcThumb =  element.photo;
         var srcThumb =  srcThumb.replace("images/", "images/thumbnail_");
@@ -67,8 +70,8 @@ $(function() {
         $.ajax({
             	url: apiUrl
         }).done(function(response){
-                  //console.log(response);
-     		    insertContent(response);
+                  //console.log(JSON.parse(response));
+     		    insertContent(JSON.parse(response));  //parse added
                 //console.log(imgObjectsArray);
                 //showGeneralMap();
     	 }).fail(function(error) {
@@ -80,26 +83,50 @@ $(function() {
     
        //geolocator---------------------------------------------
     
+    navigator.geolocation.getCurrentPosition(
+  function(){console.log("success")},
+  function(){console.log("error")}
+);
+
     var positionLat;
     var positionLng;
     
+ 
     // check for Geolocation support
    $('input[name="geolocation"]').on('click', function(){
         if ($(this).is(':checked')) {
             if (navigator.geolocation) {
                     console.log('Geolocation is supported!');
                     $('#loader').show();
+                
+                    var options = {   
+                            enableHighAccuracy: true,
+                          timeout: 5000,
+                          maximumAge: 0
+                        };
+
                    var startPos;
-                   var geoSuccess = function(position) {
+                
+                   function geoSuccess(position) {
+                    console.log("i try to get the position");
                     startPos = position;
                     positionLat = startPos.coords.latitude;
                     positionLng = startPos.coords.longitude;
-                    console.log(positionLat);
-                    console.log(positionLng);  
-                     $('#geolocation-info').text("Lokalizacja pobrana"); 
-                       $('#loader').hide();
+                    $('#lat').val(positionLat);
+                    $('#lng').val(positionLng);
+                    //console.log(positionLat);
+                    //console.log(positionLng);  
+                    $('#geolocation-info').text("Lokalizacja pobrana"); 
+                    $('#loader').hide();
                 };
-                navigator.geolocation.getCurrentPosition(geoSuccess);
+                
+                    function error(err) {
+                          console.warn(`ERROR(${err.code}): ${err.message}`);
+                          $('#geolocation-info').text("Musisz włączyć w ustawieniach zgodę na geolokalizację"); 
+                          $('#loader').hide();
+                        };
+                
+                navigator.geolocation.getCurrentPosition(geoSuccess, error, options);
             }
             else {
               alert('Ta przeglądarka nie wspiera geolokalizacji.');
@@ -107,9 +134,11 @@ $(function() {
 
         }
    });
+    
      
     
   //adding data to json---------------------------------------
+    
     
     
     function addImage(){
@@ -118,21 +147,23 @@ $(function() {
             event.preventDefault();
             
             // save image via PHP
-            var photoUrl = '#';
-            var lat = '';
-            var lng = '';
-            var date = '';
+            //var photoUrl = '#';
+            //var lat = positionLat;
+            //var lng = positionLng;
+            //var date = '';
             
              $.ajax({
                 url: "upload-for-ajax.php", 
                 type: "POST",             
                 //dataType: 'text',
-                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                data: new FormData(this), // Data sent to server, from form, modified by geolocation
                 contentType: false,       // The content type used when sending data to the server.
                 cache: false,             // To unable request pages to be cached
                 processData:false,        // To send DOMDocument or non processed data file it is set to false
                 success: function(response) {  
-                        //console.log(response);
+                        console.log(response);
+                        
+                    /*
                         photoUrl = response.split("||")[0];
                         photoUrl = photoUrl.trim();
                         lat = response.split("||")[2];
@@ -183,8 +214,17 @@ $(function() {
                            console.log(error);
                         });
                 
-                
-                }
+                */
+                    //show images on the site
+                                loadImages();
+                                $('#info').text("obrazek dodany");
+                                //clear form
+                                $("form")[0].reset();
+                },
+                 error: function(error) { 
+                    console.log(error);
+                 }
+                 
                 }); 
         });
     }
@@ -287,7 +327,8 @@ $(function() {
         
                 //for pins generating
                 for (var i = 0; i < imgObjectsArray.length; i++) { 
-                    if (imgObjectsArray[i].lat !=="NULL"){
+                    //console.log(imgObjectsArray[i].lat);
+                    if (imgObjectsArray[i].lat){
                              var uluru = {lat: parseFloat(imgObjectsArray[i].lat), lng: parseFloat(imgObjectsArray[i].lng)};
                             //console.log(imgObjectsArray[i]);
                             var marker = new google.maps.Marker({
@@ -328,7 +369,7 @@ $(function() {
                 
     };
     
- 
+
     //end---------------------------------
 
 });

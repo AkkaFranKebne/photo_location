@@ -7,21 +7,20 @@ include 'elements_db_connection.php';
     $json = array();
 
     //get the uploaded files form sql table
-    $sql = "SELECT id, ".$table_var_title.", ".$table_var_photo.", ".$table_var_alt." FROM ". $table_name;
+    $sql = "SELECT ".$table_var_id.", ".$table_var_lat.", ".$table_var_lng.", ".$table_var_title.", ".$table_var_photo.", ".$table_var_alt." FROM ". $table_name;
 
             $result = $conn->query($sql);
             //echo "rezultat". $result;
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                 // variables for JSON
-                            $photoForJSON = "images/".$row['photo'];
-                            $descForJSON = $row['alt'];
-                            $titleForJSON = $row['title'];
-                            $idForJSON = $row['id'];
+                            $photoForJSON = "images/".$row[$table_var_photo];
+                            $descForJSON = $row[$table_var_alt];
+                            $titleForJSON = $row[$table_var_title];
+                            $idForJSON = $row[$table_var_id];
                             $daytimeForJSON= '';
-                            $latitudeForJSON = '';
-                            $longitudeForJSON = '';
-                             
+                            $latitudeForJSON = $row[$table_var_lat];
+                            $longitudeForJSON = $row[$table_var_lng];
                         //get to data meta data
                             $exif = exif_read_data($photoForJSON, 0, true);
                             //echo $exif===false ? "<br>TECH INFO: No header data found.<br />\n" : "<br>TECH INFO: Image contains headers<br />";
@@ -32,8 +31,8 @@ include 'elements_db_connection.php';
                             }
                             
 
-                        //getting longitude and latitude
-                            if(isset($exif["GPS"]["GPSLatitudeRef"])){
+                        //getting longitude and latitude for images with no geolocation from the browser
+                            if(empty($latitudeForJSON) && isset($exif["GPS"]["GPSLatitudeRef"])){
                                 $LatM = 1; $LongM = 1;
                                 if($exif["GPS"]["GPSLatitudeRef"] == 'S'){
                                     $LatM = -1;
@@ -79,6 +78,8 @@ include 'elements_db_connection.php';
                     
                 //encoding JSON
                 $jsonstring = json_encode($json);
+
+                //$jsonstring = '{"images":' . $jsonstring . '}';
                 echo $jsonstring;
 ?>
 
