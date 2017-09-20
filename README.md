@@ -9,7 +9,7 @@ https://bugs.codingmice.com/register-img-ajax.php
 
 ### ad 1 + 2 
 - For jpg and png files
-- uploades via POST form, sent via AJAX and PHP to SQL database, collecting coords from the browser on the  way
+- uploades via POST form, sent via AJAX and PHP to SQL database, collecting coords from the browser on the  way (https provided)
 - f no coords were sent by the browser PHP tries to takes coords from exif data
 
 ### ad 3.
@@ -22,8 +22,8 @@ https://bugs.codingmice.com/register-img-ajax.php
 
 #### Directly:
 
-- iphone 5c (ios), Safari up to date for 28.08.2017  - https necesarry (see above)
-- Karbonn android one - not provides coords, images rotated properly, application works properly)
+- iphone 5c (ios), Safari up to date for 28.08.2017  
+- Karbonn android one 
 
 #### Virtually:
 - via https://www.browserstack.com/
