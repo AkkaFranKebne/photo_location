@@ -10,7 +10,7 @@ https://bugs.codingmice.com/register-img-ajax.php
 ### ad 1 + 2 
 - For jpg and png files
 - uploades via POST form, sent via AJAX and PHP to SQL database, collecting coords from the browser on the  way (https provided)
-- f no coords were sent by the browser PHP tries to takes coords from exif data
+- if no coords were sent by the browser PHP tries to takes coords from exif data
 
 ### ad 3.
 - info about photos collected in JSON prepared via PHP  https://bugs.codingmice.com/get-images.php and in Images object
